@@ -1,0 +1,36 @@
+aid: apache-ignite
+name: Apache Ignite
+description: >-
+  Apache Ignite is a distributed database for high-performance computing with in-memory speed. It provides SQL, key-value, compute, and machine learning APIs with support for ACID transactions across distributed caches.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - In-Memory
+  - Distributed Database
+  - Caching
+  - Compute Grid
+  - SQL
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-ignite:apache-ignite-rest-api
+    name: Apache Ignite REST API
+    description: >-
+      Ignite provides a REST API for cache operations and cluster management, SQL API with JDBC/ODBC drivers, Key-Value API, Compute API for distributed processing, Service Grid API, and thin client APIs for Java, .NET, C++, and Python.
+    humanURL: https://ignite.apache.org/docs/latest/
+    tags:
+      - REST
+      - SQL
+      - Key-Value
+      - Compute
+    properties:
+      - type: Documentation
+        url: https://ignite.apache.org/docs/latest/
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
