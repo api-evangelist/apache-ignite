@@ -7,10 +7,10 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - In-Memory
-  - Distributed Database
   - Caching
   - Compute Grid
+  - Distributed Database
+  - In-Memory
   - SQL
 created: '2026-03-16'
 modified: '2026-03-16'
@@ -24,10 +24,10 @@ apis:
       Ignite provides a REST API for cache operations and cluster management, SQL API with JDBC/ODBC drivers, Key-Value API, Compute API for distributed processing, Service Grid API, and thin client APIs for Java, .NET, C++, and Python.
     humanURL: https://ignite.apache.org/docs/latest/
     tags:
+      - Compute
+      - Key-Value
       - REST
       - SQL
-      - Key-Value
-      - Compute
     properties:
       - type: Documentation
         url: https://ignite.apache.org/docs/latest/
