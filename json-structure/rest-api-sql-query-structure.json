@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-sql-query-structure.json",
+  "name": "SqlQuery",
+  "description": "Rest representation of sql query.",
+  "properties": {
+    "id": {
+      "type": "uuid",
+      "description": "Sql query ID."
+    },
+    "node": {
+      "type": "string",
+      "description": "Initiator node."
+    },
+    "phase": {
+      "type": "string",
+      "description": "Phase."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type."
+    },
+    "schema": {
+      "type": "string",
+      "description": "Schema."
+    },
+    "sql": {
+      "type": "string",
+      "description": "SQL statement."
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "Start time."
+    }
+  },
+  "required": [
+    "id",
+    "node",
+    "phase",
+    "schema",
+    "sql",
+    "startTime",
+    "type"
+  ]
+}

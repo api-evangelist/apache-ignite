@@ -1,0 +1,5 @@
+{
+  "restHost": "example-value",
+  "httpPort": 568,
+  "httpsPort": 255
+}

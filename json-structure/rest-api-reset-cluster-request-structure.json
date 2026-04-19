@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-reset-cluster-request-structure.json",
+  "name": "ResetClusterRequest",
+  "description": "Reset cluster.",
+  "properties": {
+    "cmgNodeNames": {
+      "type": "array",
+      "description": "Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.",
+      "nullable": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "metastorageReplicationFactor": {
+      "type": "int32",
+      "description": "Number of nodes in the voting member set of the Metastorage RAFT group.",
+      "nullable": true
+    }
+  }
+}

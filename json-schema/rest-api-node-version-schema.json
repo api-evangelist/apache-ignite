@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-node-version-schema.json",
+  "title": "NodeVersion",
+  "description": "Node version.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Node version."
+    },
+    "product": {
+      "type": "string",
+      "description": "Node product."
+    }
+  },
+  "required": [
+    "product",
+    "version"
+  ]
+}

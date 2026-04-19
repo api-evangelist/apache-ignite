@@ -1,0 +1,11 @@
+{
+  "type": "string",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-deploy-mode-structure.json",
+  "name": "deployMode",
+  "description": "Initial set of nodes to deploy.",
+  "enum": [
+    "MAJORITY",
+    "ALL"
+  ]
+}

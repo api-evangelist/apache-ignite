@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-sql-query-schema.json",
+  "title": "SqlQuery",
+  "description": "Rest representation of sql query.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Sql query ID.",
+      "format": "uuid"
+    },
+    "node": {
+      "type": "string",
+      "description": "Initiator node."
+    },
+    "phase": {
+      "type": "string",
+      "description": "Phase."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type."
+    },
+    "schema": {
+      "type": "string",
+      "description": "Schema."
+    },
+    "sql": {
+      "type": "string",
+      "description": "SQL statement."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Start time.",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "node",
+    "phase",
+    "schema",
+    "sql",
+    "startTime",
+    "type"
+  ]
+}

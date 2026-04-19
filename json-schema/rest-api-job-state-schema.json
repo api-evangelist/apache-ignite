@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-job-state-schema.json",
+  "title": "JobState",
+  "description": "Rest representation of org.apache.ignite.compute.JobState.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Job ID.",
+      "format": "uuid"
+    },
+    "status": {
+      "description": "Job status.",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/JobStatus"
+        },
+        {}
+      ]
+    },
+    "createTime": {
+      "type": "string",
+      "description": "Job create time.",
+      "format": "date-time"
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Job start time.",
+      "format": "date-time",
+      "nullable": true
+    },
+    "finishTime": {
+      "type": "string",
+      "description": "Job finish time.",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "required": [
+    "createTime",
+    "id",
+    "status"
+  ]
+}

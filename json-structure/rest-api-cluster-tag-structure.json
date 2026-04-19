@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-cluster-tag-structure.json",
+  "name": "ClusterTag",
+  "description": "Unique tag that identifies the cluster.",
+  "properties": {
+    "clusterId": {
+      "type": "uuid",
+      "description": "Unique cluster UUID. Generated automatically."
+    },
+    "clusterName": {
+      "type": "string",
+      "description": "Unique cluster name."
+    }
+  }
+}

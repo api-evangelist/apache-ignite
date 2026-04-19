@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-transaction-schema.json",
+  "title": "Transaction",
+  "description": "Rest representation of transaction.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Transaction ID.",
+      "format": "uuid"
+    },
+    "node": {
+      "type": "string",
+      "description": "Coordinator node."
+    },
+    "state": {
+      "type": "string",
+      "description": "State."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type."
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Start time.",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "node",
+    "priority",
+    "startTime",
+    "state",
+    "type"
+  ]
+}

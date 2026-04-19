@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-metric-structure.json",
+  "name": "Metric",
+  "description": "Metric representation.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Metric name."
+    },
+    "desc": {
+      "type": "string",
+      "description": "Metric description.",
+      "nullable": true
+    }
+  }
+}

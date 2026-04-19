@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-node-metric-sources-structure.json",
+  "name": "NodeMetricSources",
+  "description": "A list of metric sources for a node.",
+  "properties": {
+    "node": {
+      "type": "string",
+      "description": "Consistent id of the node."
+    },
+    "sources": {
+      "type": "array",
+      "description": "Metric sources.",
+      "items": {
+        "$ref": "#/components/schemas/MetricSource"
+      }
+    }
+  },
+  "required": [
+    "node",
+    "sources"
+  ]
+}

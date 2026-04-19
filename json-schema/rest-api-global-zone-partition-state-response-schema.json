@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-global-zone-partition-state-response-schema.json",
+  "title": "GlobalZonePartitionStateResponse",
+  "description": "Information about global zone partition state.",
+  "type": "object",
+  "properties": {
+    "partitionId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "zoneName": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "partitionId",
+    "state",
+    "zoneName"
+  ]
+}

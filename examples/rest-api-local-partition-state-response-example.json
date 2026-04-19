@@ -1,0 +1,10 @@
+{
+  "partitionId": 123,
+  "zoneName": "example-name",
+  "tableId": 546,
+  "schemaName": "example-name",
+  "tableName": "example-name",
+  "nodeName": "example-name",
+  "state": "example-value",
+  "estimatedRows": 759
+}

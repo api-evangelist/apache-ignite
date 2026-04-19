@@ -1,0 +1,9 @@
+{
+  "nodeNames": [
+    "example-name"
+  ],
+  "zoneName": "example-name",
+  "partitionIds": [
+    600
+  ]
+}

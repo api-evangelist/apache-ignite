@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-node-version-structure.json",
+  "name": "NodeVersion",
+  "description": "Node version.",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Node version."
+    },
+    "product": {
+      "type": "string",
+      "description": "Node product."
+    }
+  },
+  "required": [
+    "product",
+    "version"
+  ]
+}

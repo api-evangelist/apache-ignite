@@ -1,0 +1,127 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Apache Ignite"
+  description: "Unified vocabulary for the Apache Ignite distributed in-memory database REST API and cluster management workflows."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: ignite-rest-api
+      name: Apache Ignite REST API
+      version: "3.1.0"
+      baseUrl: http://localhost:10300
+      status: active
+
+  resources:
+    - name: cluster
+      description: Distributed Ignite cluster lifecycle and state management
+      apis: [ignite-rest-api]
+      actions: [get, init, reset]
+    - name: nodes
+      description: Individual cluster node management
+      apis: [ignite-rest-api]
+      actions: [list, get]
+    - name: sql
+      description: Distributed SQL query execution
+      apis: [ignite-rest-api]
+      actions: [execute]
+    - name: configuration
+      description: Cluster configuration management
+      apis: [ignite-rest-api]
+      actions: [get, update]
+    - name: deployment-units
+      description: Application deployment units
+      apis: [ignite-rest-api]
+      actions: [list, deploy, undeploy]
+
+  actions:
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: init
+      httpMethod: POST
+      pattern: write
+    - name: execute
+      httpMethod: POST
+      pattern: write
+    - name: update
+      httpMethod: PATCH
+      pattern: write
+    - name: deploy
+      httpMethod: POST
+      pattern: write
+    - name: undeploy
+      httpMethod: DELETE
+      pattern: destructive
+    - name: reset
+      httpMethod: POST
+      pattern: destructive
+
+  authentication:
+    schemes:
+      - name: BasicAuth
+        type: http
+        scheme: basic
+        description: HTTP Basic authentication for Ignite REST API
+
+capability:
+  workflows:
+    - name: Cluster Management
+      file: capabilities/cluster-management.yaml
+      description: Database administrators and platform engineers managing Ignite clusters
+      toolCount: 5
+      personas:
+        - Database Administrator
+        - Platform Engineer
+
+  personas:
+    - id: database-administrator
+      name: Database Administrator
+      description: DBAs who manage Ignite cluster health, configuration, and SQL workloads
+      workflows: [Cluster Management]
+    - id: platform-engineer
+      name: Platform Engineer
+      description: Engineers who deploy and maintain Ignite clusters in production
+      workflows: [Cluster Management]
+
+  domains:
+    - name: Cluster Operations
+      resources: [cluster, nodes]
+    - name: Data Access
+      resources: [sql]
+    - name: Administration
+      resources: [configuration, deployment-units]
+
+  namespaces:
+    - name: ignite-rest-api
+      type: consumed
+    - name: ignite-cluster-management-api
+      type: rest-exposed
+      port: 8080
+    - name: ignite-cluster-management-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: IGNITE_BASIC_AUTH
+      description: Basic auth credentials for Ignite REST API
+      workflows: [Cluster Management]
+
+crossReference:
+  - resource: cluster
+    operations: [getClusterState, init]
+    workflows: [Cluster Management]
+    personas: [Database Administrator, Platform Engineer]
+  - resource: sql
+    operations: [executeSql]
+    workflows: [Cluster Management]
+    personas: [Database Administrator]
+  - resource: configuration
+    operations: [getConfiguration, updateConfiguration]
+    workflows: [Cluster Management]
+    personas: [Platform Engineer]

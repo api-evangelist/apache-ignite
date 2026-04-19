@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-unit-status-structure.json",
+  "name": "UnitStatus",
+  "description": "Unit status.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unit identifier."
+    },
+    "versionToStatus": {
+      "type": "array",
+      "description": "Map from unit version to unit deployment status.",
+      "items": {
+        "$ref": "#/components/schemas/UnitVersionStatus"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "versionToStatus"
+  ]
+}

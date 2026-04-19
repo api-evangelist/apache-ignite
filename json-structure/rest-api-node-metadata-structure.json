@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-node-metadata-structure.json",
+  "name": "NodeMetadata",
+  "description": "Node metadata information.",
+  "properties": {
+    "restHost": {
+      "type": "string",
+      "description": "The host exposed to REST API."
+    },
+    "httpPort": {
+      "type": "int32",
+      "description": "The HTTP port exposed to REST API."
+    },
+    "httpsPort": {
+      "type": "int32",
+      "description": "The HTTPS port exposed to REST API."
+    }
+  }
+}

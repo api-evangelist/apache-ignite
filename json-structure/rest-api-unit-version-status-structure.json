@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-unit-version-status-structure.json",
+  "name": "UnitVersionStatus",
+  "description": "Unit version and status.",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Unit version."
+    },
+    "status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DeploymentStatus"
+        },
+        {
+          "description": "Unit status."
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "version"
+  ]
+}

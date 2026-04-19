@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-cluster-state-structure.json",
+  "name": "ClusterState",
+  "description": "Information about current cluster state.",
+  "properties": {
+    "cmgNodes": {
+      "type": "array",
+      "description": "List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "msNodes": {
+      "type": "array",
+      "description": "List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "igniteVersion": {
+      "type": "string",
+      "description": "Version of Apache Ignite that the cluster was created on."
+    },
+    "clusterTag": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ClusterTag"
+        },
+        {
+          "description": "Unique tag that identifies the cluster."
+        }
+      ]
+    },
+    "formerClusterIds": {
+      "type": "array",
+      "description": "IDs the cluster had before.",
+      "nullable": true,
+      "items": {
+        "type": "uuid"
+      }
+    }
+  }
+}

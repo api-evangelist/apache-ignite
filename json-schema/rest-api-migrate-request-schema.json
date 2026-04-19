@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-migrate-request-schema.json",
+  "title": "MigrateRequest",
+  "description": "Migrate nodes to new cluster.",
+  "type": "object",
+  "properties": {
+    "cmgNodes": {
+      "type": "array",
+      "description": "Names of the CMG node names.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metaStorageNodes": {
+      "type": "array",
+      "description": "Names of the Metastorage node names.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Ignite version."
+    },
+    "clusterId": {
+      "type": "string",
+      "description": "ID of the cluster.",
+      "format": "uuid"
+    },
+    "clusterName": {
+      "type": "string",
+      "description": "Name of the cluster."
+    },
+    "formerClusterIds": {
+      "type": "array",
+      "description": "IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.",
+      "nullable": true,
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    }
+  }
+}

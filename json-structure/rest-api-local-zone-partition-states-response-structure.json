@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-local-zone-partition-states-response-structure.json",
+  "name": "LocalZonePartitionStatesResponse",
+  "description": "Information about local zone partition states.",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LocalZonePartitionStateResponse"
+      }
+    }
+  }
+}

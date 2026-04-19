@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-metric-source-structure.json",
+  "name": "MetricSource",
+  "description": "A list of metric sources provided by modules.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Metric source name."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "If True, the metric is tracked. Otherwise, the metric is not tracked."
+    }
+  },
+  "required": [
+    "enabled",
+    "name"
+  ]
+}

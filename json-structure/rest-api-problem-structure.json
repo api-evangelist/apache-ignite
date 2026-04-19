@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-problem-structure.json",
+  "name": "Problem",
+  "description": "Extended description of the problem with the request.",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Short summary of the issue."
+    },
+    "status": {
+      "type": "int32",
+      "description": "Returned HTTP status code."
+    },
+    "code": {
+      "type": "string",
+      "description": "Ignite 3 error code."
+    },
+    "type": {
+      "type": "string",
+      "description": "URI to documentation regarding the issue."
+    },
+    "detail": {
+      "type": "string",
+      "description": "Extended explanation of the issue."
+    },
+    "node": {
+      "type": "string",
+      "description": "Name of the node the issue happened on."
+    },
+    "traceId": {
+      "type": "uuid",
+      "description": "Unique issue identifier. This identifier can be used to find logs related to the issue."
+    },
+    "invalidParams": {
+      "type": "array",
+      "description": "A list of parameters that did not pass validation and the reason for it.",
+      "items": {
+        "$ref": "#/components/schemas/InvalidParam"
+      }
+    }
+  }
+}

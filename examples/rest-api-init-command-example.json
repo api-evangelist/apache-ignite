@@ -1,0 +1,10 @@
+{
+  "metaStorageNodes": [
+    "example-value"
+  ],
+  "cmgNodes": [
+    "example-value"
+  ],
+  "clusterName": "example-name",
+  "clusterConfiguration": "example-value"
+}

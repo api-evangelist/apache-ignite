@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-network-address-structure.json",
+  "name": "NetworkAddress",
+  "description": "Node network address information.",
+  "properties": {
+    "host": {
+      "type": "string",
+      "description": "Name of the host node runs on."
+    },
+    "port": {
+      "type": "int32",
+      "description": "Port the node runs on."
+    }
+  }
+}

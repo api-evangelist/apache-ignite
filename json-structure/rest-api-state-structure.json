@@ -1,0 +1,12 @@
+{
+  "type": "string",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-state-structure.json",
+  "name": "State",
+  "description": "Possible node states.",
+  "enum": [
+    "STARTING",
+    "STARTED",
+    "STOPPING"
+  ]
+}

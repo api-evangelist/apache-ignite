@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-job-status-schema.json",
+  "title": "JobStatus",
+  "description": "Job status.",
+  "type": "string",
+  "enum": [
+    "QUEUED",
+    "EXECUTING",
+    "FAILED",
+    "COMPLETED",
+    "CANCELING",
+    "CANCELED"
+  ]
+}

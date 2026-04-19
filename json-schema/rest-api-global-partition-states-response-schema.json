@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-global-partition-states-response-schema.json",
+  "title": "GlobalPartitionStatesResponse",
+  "description": "Information about global partition states.",
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GlobalPartitionStateResponse"
+      }
+    }
+  }
+}

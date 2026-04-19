@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-cluster-node-schema.json",
+  "title": "ClusterNode",
+  "description": "Information about the cluster node.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID.",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "Unique cluster name."
+    },
+    "address": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkAddress"
+        },
+        {
+          "description": "Cluster network address information."
+        }
+      ]
+    },
+    "metadata": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NodeMetadata"
+        },
+        {
+          "description": "Node metadata information."
+        }
+      ]
+    }
+  }
+}

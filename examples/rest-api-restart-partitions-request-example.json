@@ -1,0 +1,10 @@
+{
+  "nodeNames": [
+    "example-name"
+  ],
+  "zoneName": "example-name",
+  "partitionIds": [
+    43
+  ],
+  "tableName": "example-name"
+}

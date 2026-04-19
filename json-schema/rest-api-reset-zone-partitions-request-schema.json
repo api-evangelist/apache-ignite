@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-reset-zone-partitions-request-schema.json",
+  "title": "ResetZonePartitionsRequest",
+  "description": "Reset zone partitions configuration.",
+  "type": "object",
+  "properties": {
+    "zoneName": {
+      "type": "string",
+      "description": "Name of the zone to reset partitions of. Without quotes, case-sensitive."
+    },
+    "partitionIds": {
+      "type": "array",
+      "description": "IDs of partitions to reset. All if empty.",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}

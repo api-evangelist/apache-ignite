@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-global-partition-state-response-structure.json",
+  "name": "GlobalPartitionStateResponse",
+  "description": "Information about global partition state.",
+  "properties": {
+    "partitionId": {
+      "type": "int32"
+    },
+    "zoneName": {
+      "type": "string"
+    },
+    "tableId": {
+      "type": "int32"
+    },
+    "schemaName": {
+      "type": "string"
+    },
+    "tableName": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "partitionId",
+    "schemaName",
+    "state",
+    "tableId",
+    "tableName",
+    "zoneName"
+  ]
+}

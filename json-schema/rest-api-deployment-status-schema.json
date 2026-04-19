@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-deployment-status-schema.json",
+  "title": "DeploymentStatus",
+  "description": "Status of deployment process.",
+  "type": "string",
+  "enum": [
+    "UPLOADING",
+    "DEPLOYED",
+    "OBSOLETE",
+    "REMOVING"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-metric-schema.json",
+  "title": "Metric",
+  "description": "Metric representation.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Metric name."
+    },
+    "desc": {
+      "type": "string",
+      "description": "Metric description.",
+      "nullable": true
+    }
+  }
+}

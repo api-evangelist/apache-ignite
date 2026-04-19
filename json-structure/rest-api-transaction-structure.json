@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-transaction-structure.json",
+  "name": "Transaction",
+  "description": "Rest representation of transaction.",
+  "properties": {
+    "id": {
+      "type": "uuid",
+      "description": "Transaction ID."
+    },
+    "node": {
+      "type": "string",
+      "description": "Coordinator node."
+    },
+    "state": {
+      "type": "string",
+      "description": "State."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type."
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority."
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "Start time."
+    }
+  },
+  "required": [
+    "id",
+    "node",
+    "priority",
+    "startTime",
+    "state",
+    "type"
+  ]
+}

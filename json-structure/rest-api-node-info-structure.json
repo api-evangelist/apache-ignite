@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-node-info-structure.json",
+  "name": "NodeInfo",
+  "description": "Node info.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique node name."
+    },
+    "jdbcPort": {
+      "type": "int32",
+      "description": "Node JDBC port."
+    }
+  },
+  "required": [
+    "jdbcPort",
+    "name"
+  ]
+}

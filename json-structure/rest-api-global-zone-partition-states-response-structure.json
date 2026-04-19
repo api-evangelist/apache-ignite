@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-global-zone-partition-states-response-structure.json",
+  "name": "GlobalZonePartitionStatesResponse",
+  "description": "Information about global zone partition states.",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GlobalZonePartitionStateResponse"
+      }
+    }
+  }
+}

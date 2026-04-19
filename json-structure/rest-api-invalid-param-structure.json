@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-invalid-param-structure.json",
+  "name": "InvalidParam",
+  "description": "Information about invalid request parameter.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Parameter name."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The issue with the parameter."
+    }
+  }
+}

@@ -1,0 +1,111 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Apache Ignite Cluster Management"
+  description: "Workflow capability for database administrators and platform engineers to manage Apache Ignite clusters, execute SQL queries, and configure distributed nodes."
+  tags:
+    - Apache Ignite
+    - Cluster Management
+    - Database Administration
+    - In-Memory Database
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      IGNITE_BASIC_AUTH: IGNITE_BASIC_AUTH
+
+capability:
+  consumes:
+    - import: ignite-rest-api
+      location: ./shared/rest-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: ignite-cluster-management-api
+      description: "Unified REST API for Apache Ignite cluster management."
+      resources:
+        - path: /v1/cluster
+          name: cluster
+          operations:
+            - method: GET
+              name: get-cluster-state
+              description: Get cluster state
+              call: "ignite-rest-api.get-cluster-state"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/sql
+          name: sql
+          operations:
+            - method: POST
+              name: execute-sql
+              description: Execute SQL query
+              call: "ignite-rest-api.execute-sql"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/configuration
+          name: configuration
+          operations:
+            - method: GET
+              name: get-configuration
+              description: Get cluster configuration
+              call: "ignite-rest-api.get-configuration"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: ignite-cluster-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Apache Ignite cluster management."
+      tools:
+        - name: get-cluster-state
+          description: Retrieve the current state and health of the Apache Ignite cluster
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ignite-rest-api.get-cluster-state"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: init-cluster
+          description: Initialize a new Apache Ignite cluster
+          hints:
+            readOnly: false
+          call: "ignite-rest-api.init-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: execute-sql
+          description: Execute SQL queries on the distributed Ignite cluster
+          hints:
+            readOnly: false
+          call: "ignite-rest-api.execute-sql"
+          with:
+            query: "tools.query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-configuration
+          description: Retrieve the current Apache Ignite cluster configuration
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ignite-rest-api.get-configuration"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-configuration
+          description: Update Apache Ignite cluster configuration parameters
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "ignite-rest-api.update-configuration"
+          outputParameters:
+            - type: object
+              mapping: "$."

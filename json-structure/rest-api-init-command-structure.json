@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-init-command-structure.json",
+  "name": "InitCommand",
+  "description": "Cluster initialization configuration.",
+  "properties": {
+    "metaStorageNodes": {
+      "type": "array",
+      "description": "A list of RAFT metastorage nodes.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cmgNodes": {
+      "type": "array",
+      "description": "A list of RAFT cluster management nodes.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "clusterName": {
+      "type": "string",
+      "description": "The name of the cluster."
+    },
+    "clusterConfiguration": {
+      "type": "string",
+      "description": "Cluster configuration in HOCON format."
+    }
+  }
+}

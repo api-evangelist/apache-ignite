@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-update-job-priority-body-schema.json",
+  "title": "UpdateJobPriorityBody",
+  "description": "DTO of update job priority request body.",
+  "type": "object",
+  "properties": {
+    "priority": {
+      "type": "integer",
+      "description": "Priority.",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "priority"
+  ]
+}

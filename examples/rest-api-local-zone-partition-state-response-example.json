@@ -1,0 +1,7 @@
+{
+  "partitionId": 166,
+  "zoneName": "example-name",
+  "nodeName": "example-name",
+  "state": "example-value",
+  "estimatedRows": 972
+}

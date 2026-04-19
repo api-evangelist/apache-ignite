@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-structure/rest-api-update-job-priority-body-structure.json",
+  "name": "UpdateJobPriorityBody",
+  "description": "DTO of update job priority request body.",
+  "properties": {
+    "priority": {
+      "type": "int32",
+      "description": "Priority."
+    }
+  },
+  "required": [
+    "priority"
+  ]
+}

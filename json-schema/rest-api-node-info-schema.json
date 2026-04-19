@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-node-info-schema.json",
+  "title": "NodeInfo",
+  "description": "Node info.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique node name."
+    },
+    "jdbcPort": {
+      "type": "integer",
+      "description": "Node JDBC port.",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "jdbcPort",
+    "name"
+  ]
+}

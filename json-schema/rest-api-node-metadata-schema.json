@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/json-schema/rest-api-node-metadata-schema.json",
+  "title": "NodeMetadata",
+  "description": "Node metadata information.",
+  "type": "object",
+  "properties": {
+    "restHost": {
+      "type": "string",
+      "description": "The host exposed to REST API."
+    },
+    "httpPort": {
+      "type": "integer",
+      "description": "The HTTP port exposed to REST API.",
+      "format": "int32"
+    },
+    "httpsPort": {
+      "type": "integer",
+      "description": "The HTTPS port exposed to REST API.",
+      "format": "int32"
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ignite": "https://apache-ignite.apache.org/schema/",
+    "schema": {
+      "@id": "ignite:schema",
+      "@type": "xsd:string"
+    },
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "MetricSet": "ignite:MetricSet",
+    "InvalidParam": "ignite:InvalidParam",
+    "ResetPartitionsRequest": "ignite:ResetPartitionsRequest",
+    "GlobalPartitionStateResponse": "ignite:GlobalPartitionStateResponse",
+    "LocalPartitionStatesResponse": "ignite:LocalPartitionStatesResponse",
+    "ClusterNode": "ignite:ClusterNode",
+    "ResetZonePartitionsRequest": "ignite:ResetZonePartitionsRequest",
+    "NetworkAddress": "ignite:NetworkAddress",
+    "JobState": "ignite:JobState",
+    "ClusterTag": "ignite:ClusterTag",
+    "MetricSource": "ignite:MetricSource",
+    "Problem": "ignite:Problem",
+    "LocalZonePartitionStateResponse": "ignite:LocalZonePartitionStateResponse",
+    "ResetClusterRequest": "ignite:ResetClusterRequest",
+    "RestartZonePartitionsRequest": "ignite:RestartZonePartitionsRequest",
+    "NodeState": "ignite:NodeState",
+    "GlobalPartitionStatesResponse": "ignite:GlobalPartitionStatesResponse",
+    "UnitVersionStatus": "ignite:UnitVersionStatus",
+    "InitCommand": "ignite:InitCommand",
+    "MigrateRequest": "ignite:MigrateRequest",
+    "LocalPartitionStateResponse": "ignite:LocalPartitionStateResponse",
+    "UpdateJobPriorityBody": "ignite:UpdateJobPriorityBody",
+    "Metric": "ignite:Metric",
+    "ClusterState": "ignite:ClusterState",
+    "UnitStatus": "ignite:UnitStatus",
+    "Transaction": "ignite:Transaction",
+    "NodeVersion": "ignite:NodeVersion",
+    "RestartPartitionsRequest": "ignite:RestartPartitionsRequest",
+    "SqlQuery": "ignite:SqlQuery",
+    "NodeInfo": "ignite:NodeInfo",
+    "GlobalZonePartitionStateResponse": "ignite:GlobalZonePartitionStateResponse",
+    "NodeMetadata": "ignite:NodeMetadata",
+    "GlobalZonePartitionStatesResponse": "ignite:GlobalZonePartitionStatesResponse",
+    "LocalZonePartitionStatesResponse": "ignite:LocalZonePartitionStatesResponse",
+    "NodeMetricSources": "ignite:NodeMetricSources",
+    "name": "schema:name",
+    "metrics": {
+      "@id": "ignite:metrics",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "reason": {
+      "@id": "ignite:reason",
+      "@type": "xsd:string"
+    },
+    "zoneName": {
+      "@id": "ignite:zoneName",
+      "@type": "xsd:string"
+    },
+    "partitionIds": {
+      "@id": "ignite:partitionIds",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "tableName": {
+      "@id": "ignite:tableName",
+      "@type": "xsd:string"
+    },
+    "partitionId": {
+      "@id": "ignite:partitionId",
+      "@type": "xsd:integer"
+    },
+    "tableId": {
+      "@id": "ignite:tableId",
+      "@type": "xsd:integer"
+    },
+    "schemaName": {
+      "@id": "ignite:schemaName",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "ignite:state",
+      "@type": "xsd:string"
+    },
+    "states": {
+      "@id": "ignite:states",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "ignite:id",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "ignite:address",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "ignite:metadata",
+      "@type": "xsd:string"
+    },
+    "host": {
+      "@id": "ignite:host",
+      "@type": "xsd:string"
+    },
+    "port": {
+      "@id": "ignite:port",
+      "@type": "xsd:integer"
+    },
+    "status": {
+      "@id": "ignite:status",
+      "@type": "xsd:string"
+    },
+    "createTime": {
+      "@id": "ignite:createTime",
+      "@type": "xsd:dateTime"
+    },
+    "startTime": {
+      "@id": "ignite:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "finishTime": {
+      "@id": "ignite:finishTime",
+      "@type": "xsd:dateTime"
+    },
+    "clusterId": {
+      "@id": "ignite:clusterId",
+      "@type": "xsd:string"
+    },
+    "clusterName": {
+      "@id": "ignite:clusterName",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "ignite:enabled",
+      "@type": "xsd:boolean"
+    },
+    "title": {
+      "@id": "ignite:title",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "ignite:code",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "ignite:type",
+      "@type": "xsd:string"
+    },
+    "detail": {
+      "@id": "ignite:detail",
+      "@type": "xsd:string"
+    },
+    "node": {
+      "@id": "ignite:node",
+      "@type": "xsd:string"
+    },
+    "traceId": {
+      "@id": "ignite:traceId",
+      "@type": "xsd:string"
+    },
+    "invalidParams": {
+      "@id": "ignite:invalidParams",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "nodeName": {
+      "@id": "ignite:nodeName",
+      "@type": "xsd:string"
+    },
+    "estimatedRows": {
+      "@id": "ignite:estimatedRows",
+      "@type": "xsd:integer"
+    },
+    "cmgNodeNames": {
+      "@id": "ignite:cmgNodeNames",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "metastorageReplicationFactor": {
+      "@id": "ignite:metastorageReplicationFactor",
+      "@type": "xsd:integer"
+    },
+    "nodeNames": {
+      "@id": "ignite:nodeNames",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "version": "schema:version",
+    "metaStorageNodes": {
+      "@id": "ignite:metaStorageNodes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "cmgNodes": {
+      "@id": "ignite:cmgNodes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "clusterConfiguration": {
+      "@id": "ignite:clusterConfiguration",
+      "@type": "xsd:string"
+    },
+    "formerClusterIds": {
+      "@id": "ignite:formerClusterIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "priority": {
+      "@id": "ignite:priority",
+      "@type": "xsd:integer"
+    },
+    "desc": {
+      "@id": "ignite:desc",
+      "@type": "xsd:string"
+    },
+    "msNodes": {
+      "@id": "ignite:msNodes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "igniteVersion": {
+      "@id": "ignite:igniteVersion",
+      "@type": "xsd:string"
+    },
+    "clusterTag": {
+      "@id": "ignite:clusterTag",
+      "@type": "xsd:string"
+    },
+    "versionToStatus": {
+      "@id": "ignite:versionToStatus",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "product": {
+      "@id": "ignite:product",
+      "@type": "xsd:string"
+    },
+    "phase": {
+      "@id": "ignite:phase",
+      "@type": "xsd:string"
+    },
+    "sql": {
+      "@id": "ignite:sql",
+      "@type": "xsd:string"
+    },
+    "jdbcPort": {
+      "@id": "ignite:jdbcPort",
+      "@type": "xsd:integer"
+    },
+    "restHost": {
+      "@id": "ignite:restHost",
+      "@type": "xsd:string"
+    },
+    "httpPort": {
+      "@id": "ignite:httpPort",
+      "@type": "xsd:integer"
+    },
+    "httpsPort": {
+      "@id": "ignite:httpsPort",
+      "@type": "xsd:integer"
+    },
+    "sources": {
+      "@id": "ignite:sources",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

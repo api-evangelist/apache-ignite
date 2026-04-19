@@ -1,0 +1,12 @@
+{
+  "title": "example-value",
+  "status": 370,
+  "code": "example-value",
+  "type": "standard",
+  "detail": "example-value",
+  "node": "example-value",
+  "traceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "invalidParams": [
+    "item-1841"
+  ]
+}
