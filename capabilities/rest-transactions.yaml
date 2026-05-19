@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Ignite REST module — transactions
+  description: 'Apache Ignite REST module — transactions. 3 operations. Lead operation: Apache Ignite Retrieve All in Progress
+    Transactions. Self-contained Naftiko capability covering one Apache Ignite business surface.'
+  tags:
+  - Apache Ignite
+  - transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_IGNITE_API_KEY: APACHE_IGNITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-transactions
+    baseUri: http://localhost:10300
+    description: Apache Ignite REST module — transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: management-v1-transactions
+      path: /management/v1/transactions
+      operations:
+      - name: transactions
+        method: GET
+        description: Apache Ignite Retrieve All in Progress Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: management-v1-transactions-transactionId
+      path: /management/v1/transactions/{transactionId}
+      operations:
+      - name: transaction
+        method: GET
+        description: Apache Ignite Retrieve Transaction State
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          description: The unique identifier of the transaction.
+          required: true
+      - name: killtransaction
+        method: DELETE
+        description: Apache Ignite Kill Transaction.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          description: The unique identifier of the transaction.
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.APACHE_IGNITE_USER}}'
+      password: '{{env.APACHE_IGNITE_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-transactions-rest
+    port: 8080
+    description: REST adapter for Apache Ignite REST module — transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/management/v1/transactions
+      name: management-v1-transactions
+      description: REST surface for management-v1-transactions.
+      operations:
+      - method: GET
+        name: transactions
+        description: Apache Ignite Retrieve All in Progress Transactions
+        call: rest-transactions.transactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/transactions/{transactionid}
+      name: management-v1-transactions-transactionid
+      description: REST surface for management-v1-transactions-transactionId.
+      operations:
+      - method: GET
+        name: transaction
+        description: Apache Ignite Retrieve Transaction State
+        call: rest-transactions.transaction
+        with:
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: killtransaction
+        description: Apache Ignite Kill Transaction.
+        call: rest-transactions.killtransaction
+        with:
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Ignite REST module — transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apache-ignite-retrieve-all-progress
+      description: Apache Ignite Retrieve All in Progress Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-transactions.transactions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-retrieve-transaction-state
+      description: Apache Ignite Retrieve Transaction State
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-transactions.transaction
+      with:
+        transactionId: tools.transactionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-kill-transaction
+      description: Apache Ignite Kill Transaction.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-transactions.killtransaction
+      with:
+        transactionId: tools.transactionId
+      outputParameters:
+      - type: object
+        mapping: $.

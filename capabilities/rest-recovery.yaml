@@ -1,0 +1,571 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Ignite REST module — recovery
+  description: 'Apache Ignite REST module — recovery. 12 operations. Lead operation: recovery. Self-contained Naftiko capability
+    covering one Apache Ignite business surface.'
+  tags:
+  - Apache Ignite
+  - recovery
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_IGNITE_API_KEY: APACHE_IGNITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-recovery
+    baseUri: http://localhost:10300
+    description: Apache Ignite REST module — recovery business capability. Self-contained, no shared references.
+    resources:
+    - name: management-v1-recovery-cluster-migrate
+      path: /management/v1/recovery/cluster/migrate
+      operations:
+      - name: migrate
+        method: POST
+        description: Migrates nodes from old cluster to new (repaired) cluster.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-cluster-reset
+      path: /management/v1/recovery/cluster/reset
+      operations:
+      - name: resetcluster
+        method: POST
+        description: Initiates cluster reset to repair CMG/Metastorage group/both.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-partitions-reset
+      path: /management/v1/recovery/partitions/reset
+      operations:
+      - name: resetpartitions
+        method: POST
+        description: Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost
+          majorities.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-partitions-restart
+      path: /management/v1/recovery/partitions/restart
+      operations:
+      - name: restartpartitions
+        method: POST
+        description: Restarts replica service and raft group of passed partitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-partitions-restartWithCleanup
+      path: /management/v1/recovery/partitions/restartWithCleanup
+      operations:
+      - name: restartpartitionswithcleanup
+        method: POST
+        description: Restarts replica service and raft group of passed partitions with cleaning up of the storage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-state-global
+      path: /management/v1/recovery/state/global
+      operations:
+      - name: getglobalpartitionstates
+        method: GET
+        description: Returns global partition states.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zoneNames
+          in: query
+          type: array
+        - name: partitionIds
+          in: query
+          type: array
+    - name: management-v1-recovery-state-local
+      path: /management/v1/recovery/state/local
+      operations:
+      - name: getlocalpartitionstates
+        method: GET
+        description: Returns local partition states.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zoneNames
+          in: query
+          type: array
+        - name: nodeNames
+          in: query
+          type: array
+        - name: partitionIds
+          in: query
+          type: array
+    - name: management-v1-recovery-zone-partitions-reset
+      path: /management/v1/recovery/zone/partitions/reset
+      operations:
+      - name: resetzonepartitions
+        method: POST
+        description: Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups
+          with lost majorities.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-zone-partitions-restart
+      path: /management/v1/recovery/zone/partitions/restart
+      operations:
+      - name: restartzonepartitions
+        method: POST
+        description: Restarts replica service and raft group of passed zone partitions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-zone-partitions-restartWithCleanup
+      path: /management/v1/recovery/zone/partitions/restartWithCleanup
+      operations:
+      - name: restartzonepartitionswithcleanup
+        method: POST
+        description: Restarts replica service and raft group of passed zone partitions with cleaning up of the storage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-recovery-zone-state-global
+      path: /management/v1/recovery/zone/state/global
+      operations:
+      - name: getzoneglobalpartitionstates
+        method: GET
+        description: Returns global zone partition states.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zoneNames
+          in: query
+          type: array
+        - name: partitionIds
+          in: query
+          type: array
+    - name: management-v1-recovery-zone-state-local
+      path: /management/v1/recovery/zone/state/local
+      operations:
+      - name: getzonelocalpartitionstates
+        method: GET
+        description: Returns local zone partition states.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zoneNames
+          in: query
+          type: array
+        - name: nodeNames
+          in: query
+          type: array
+        - name: partitionIds
+          in: query
+          type: array
+    authentication:
+      type: basic
+      username: '{{env.APACHE_IGNITE_USER}}'
+      password: '{{env.APACHE_IGNITE_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-recovery-rest
+    port: 8080
+    description: REST adapter for Apache Ignite REST module — recovery. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/management/v1/recovery/cluster/migrate
+      name: management-v1-recovery-cluster-migrate
+      description: REST surface for management-v1-recovery-cluster-migrate.
+      operations:
+      - method: POST
+        name: migrate
+        description: Migrates nodes from old cluster to new (repaired) cluster.
+        call: rest-recovery.migrate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/cluster/reset
+      name: management-v1-recovery-cluster-reset
+      description: REST surface for management-v1-recovery-cluster-reset.
+      operations:
+      - method: POST
+        name: resetcluster
+        description: Initiates cluster reset to repair CMG/Metastorage group/both.
+        call: rest-recovery.resetcluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/partitions/reset
+      name: management-v1-recovery-partitions-reset
+      description: REST surface for management-v1-recovery-partitions-reset.
+      operations:
+      - method: POST
+        name: resetpartitions
+        description: Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost
+          majorities.
+        call: rest-recovery.resetpartitions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/partitions/restart
+      name: management-v1-recovery-partitions-restart
+      description: REST surface for management-v1-recovery-partitions-restart.
+      operations:
+      - method: POST
+        name: restartpartitions
+        description: Restarts replica service and raft group of passed partitions.
+        call: rest-recovery.restartpartitions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/partitions/restartwithcleanup
+      name: management-v1-recovery-partitions-restartwithcleanup
+      description: REST surface for management-v1-recovery-partitions-restartWithCleanup.
+      operations:
+      - method: POST
+        name: restartpartitionswithcleanup
+        description: Restarts replica service and raft group of passed partitions with cleaning up of the storage.
+        call: rest-recovery.restartpartitionswithcleanup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/state/global
+      name: management-v1-recovery-state-global
+      description: REST surface for management-v1-recovery-state-global.
+      operations:
+      - method: GET
+        name: getglobalpartitionstates
+        description: Returns global partition states.
+        call: rest-recovery.getglobalpartitionstates
+        with:
+          zoneNames: rest.zoneNames
+          partitionIds: rest.partitionIds
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/state/local
+      name: management-v1-recovery-state-local
+      description: REST surface for management-v1-recovery-state-local.
+      operations:
+      - method: GET
+        name: getlocalpartitionstates
+        description: Returns local partition states.
+        call: rest-recovery.getlocalpartitionstates
+        with:
+          zoneNames: rest.zoneNames
+          nodeNames: rest.nodeNames
+          partitionIds: rest.partitionIds
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/zone/partitions/reset
+      name: management-v1-recovery-zone-partitions-reset
+      description: REST surface for management-v1-recovery-zone-partitions-reset.
+      operations:
+      - method: POST
+        name: resetzonepartitions
+        description: Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups
+          with lost majorities.
+        call: rest-recovery.resetzonepartitions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/zone/partitions/restart
+      name: management-v1-recovery-zone-partitions-restart
+      description: REST surface for management-v1-recovery-zone-partitions-restart.
+      operations:
+      - method: POST
+        name: restartzonepartitions
+        description: Restarts replica service and raft group of passed zone partitions.
+        call: rest-recovery.restartzonepartitions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/zone/partitions/restartwithcleanup
+      name: management-v1-recovery-zone-partitions-restartwithcleanup
+      description: REST surface for management-v1-recovery-zone-partitions-restartWithCleanup.
+      operations:
+      - method: POST
+        name: restartzonepartitionswithcleanup
+        description: Restarts replica service and raft group of passed zone partitions with cleaning up of the storage.
+        call: rest-recovery.restartzonepartitionswithcleanup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/zone/state/global
+      name: management-v1-recovery-zone-state-global
+      description: REST surface for management-v1-recovery-zone-state-global.
+      operations:
+      - method: GET
+        name: getzoneglobalpartitionstates
+        description: Returns global zone partition states.
+        call: rest-recovery.getzoneglobalpartitionstates
+        with:
+          zoneNames: rest.zoneNames
+          partitionIds: rest.partitionIds
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/recovery/zone/state/local
+      name: management-v1-recovery-zone-state-local
+      description: REST surface for management-v1-recovery-zone-state-local.
+      operations:
+      - method: GET
+        name: getzonelocalpartitionstates
+        description: Returns local zone partition states.
+        call: rest-recovery.getzonelocalpartitionstates
+        with:
+          zoneNames: rest.zoneNames
+          nodeNames: rest.nodeNames
+          partitionIds: rest.partitionIds
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-recovery-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Ignite REST module — recovery. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: migrates-nodes-old-cluster-new
+      description: Migrates nodes from old cluster to new (repaired) cluster.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.migrate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiates-cluster-reset-repair-cmg
+      description: Initiates cluster reset to repair CMG/Metastorage group/both.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.resetcluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-assignments-partitions-forced-manner
+      description: Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost
+        majorities.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.resetpartitions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restarts-replica-service-and-raft
+      description: Restarts replica service and raft group of passed partitions.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.restartpartitions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restarts-replica-service-and-raft-2
+      description: Restarts replica service and raft group of passed partitions with cleaning up of the storage.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.restartpartitionswithcleanup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-global-partition-states
+      description: Returns global partition states.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-recovery.getglobalpartitionstates
+      with:
+        zoneNames: tools.zoneNames
+        partitionIds: tools.partitionIds
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-local-partition-states
+      description: Returns local partition states.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-recovery.getlocalpartitionstates
+      with:
+        zoneNames: tools.zoneNames
+        nodeNames: tools.nodeNames
+        partitionIds: tools.partitionIds
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-assignments-zone-s-partitions-forced
+      description: Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups with
+        lost majorities.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.resetzonepartitions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restarts-replica-service-and-raft-3
+      description: Restarts replica service and raft group of passed zone partitions.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.restartzonepartitions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restarts-replica-service-and-raft-4
+      description: Restarts replica service and raft group of passed zone partitions with cleaning up of the storage.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-recovery.restartzonepartitionswithcleanup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-global-zone-partition-states
+      description: Returns global zone partition states.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-recovery.getzoneglobalpartitionstates
+      with:
+        zoneNames: tools.zoneNames
+        partitionIds: tools.partitionIds
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-local-zone-partition-states
+      description: Returns local zone partition states.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-recovery.getzonelocalpartitionstates
+      with:
+        zoneNames: tools.zoneNames
+        nodeNames: tools.nodeNames
+        partitionIds: tools.partitionIds
+      outputParameters:
+      - type: object
+        mapping: $.

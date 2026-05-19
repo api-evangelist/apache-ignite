@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Ignite REST module — clusterManagement
+  description: 'Apache Ignite REST module — clusterManagement. 2 operations. Lead operation: Apache Ignite Initialize Cluster.
+    Self-contained Naftiko capability covering one Apache Ignite business surface.'
+  tags:
+  - Apache Ignite
+  - clusterManagement
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_IGNITE_API_KEY: APACHE_IGNITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-clustermanagement
+    baseUri: http://localhost:10300
+    description: Apache Ignite REST module — clusterManagement business capability. Self-contained, no shared references.
+    resources:
+    - name: management-v1-cluster-init
+      path: /management/v1/cluster/init
+      operations:
+      - name: init
+        method: POST
+        description: Apache Ignite Initialize Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: management-v1-cluster-state
+      path: /management/v1/cluster/state
+      operations:
+      - name: clusterstate
+        method: GET
+        description: Apache Ignite Get Cluster State
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_IGNITE_USER}}'
+      password: '{{env.APACHE_IGNITE_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-clustermanagement-rest
+    port: 8080
+    description: REST adapter for Apache Ignite REST module — clusterManagement. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/management/v1/cluster/init
+      name: management-v1-cluster-init
+      description: REST surface for management-v1-cluster-init.
+      operations:
+      - method: POST
+        name: init
+        description: Apache Ignite Initialize Cluster
+        call: rest-clustermanagement.init
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/cluster/state
+      name: management-v1-cluster-state
+      description: REST surface for management-v1-cluster-state.
+      operations:
+      - method: GET
+        name: clusterstate
+        description: Apache Ignite Get Cluster State
+        call: rest-clustermanagement.clusterstate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-clustermanagement-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Ignite REST module — clusterManagement. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apache-ignite-initialize-cluster
+      description: Apache Ignite Initialize Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-clustermanagement.init
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-get-cluster-state
+      description: Apache Ignite Get Cluster State
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-clustermanagement.clusterstate
+      outputParameters:
+      - type: object
+        mapping: $.

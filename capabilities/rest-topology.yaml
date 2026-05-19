@@ -1,0 +1,103 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Ignite REST module — topology
+  description: 'Apache Ignite REST module — topology. 2 operations. Lead operation: Apache Ignite Get Logical Topology. Self-contained
+    Naftiko capability covering one Apache Ignite business surface.'
+  tags:
+  - Apache Ignite
+  - topology
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_IGNITE_API_KEY: APACHE_IGNITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-topology
+    baseUri: http://localhost:10300
+    description: Apache Ignite REST module — topology business capability. Self-contained, no shared references.
+    resources:
+    - name: management-v1-cluster-topology-logical
+      path: /management/v1/cluster/topology/logical
+      operations:
+      - name: logical
+        method: GET
+        description: Apache Ignite Get Logical Topology
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: management-v1-cluster-topology-physical
+      path: /management/v1/cluster/topology/physical
+      operations:
+      - name: physical
+        method: GET
+        description: Apache Ignite Get Physical Topology
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_IGNITE_USER}}'
+      password: '{{env.APACHE_IGNITE_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-topology-rest
+    port: 8080
+    description: REST adapter for Apache Ignite REST module — topology. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/management/v1/cluster/topology/logical
+      name: management-v1-cluster-topology-logical
+      description: REST surface for management-v1-cluster-topology-logical.
+      operations:
+      - method: GET
+        name: logical
+        description: Apache Ignite Get Logical Topology
+        call: rest-topology.logical
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/cluster/topology/physical
+      name: management-v1-cluster-topology-physical
+      description: REST surface for management-v1-cluster-topology-physical.
+      operations:
+      - method: GET
+        name: physical
+        description: Apache Ignite Get Physical Topology
+        call: rest-topology.physical
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-topology-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Ignite REST module — topology. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-ignite-get-logical-topology
+      description: Apache Ignite Get Logical Topology
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-topology.logical
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-get-physical-topology
+      description: Apache Ignite Get Physical Topology
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-topology.physical
+      outputParameters:
+      - type: object
+        mapping: $.

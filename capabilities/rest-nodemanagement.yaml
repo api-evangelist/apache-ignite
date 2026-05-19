@@ -1,0 +1,135 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Ignite REST module — nodeManagement
+  description: 'Apache Ignite REST module — nodeManagement. 3 operations. Lead operation: Apache Ignite Get Node Information.
+    Self-contained Naftiko capability covering one Apache Ignite business surface.'
+  tags:
+  - Apache Ignite
+  - nodeManagement
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_IGNITE_API_KEY: APACHE_IGNITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-nodemanagement
+    baseUri: http://localhost:10300
+    description: Apache Ignite REST module — nodeManagement business capability. Self-contained, no shared references.
+    resources:
+    - name: management-v1-node-info
+      path: /management/v1/node/info
+      operations:
+      - name: nodeinfo
+        method: GET
+        description: Apache Ignite Get Node Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: management-v1-node-state
+      path: /management/v1/node/state
+      operations:
+      - name: nodestate
+        method: GET
+        description: Apache Ignite Get Node State
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: management-v1-node-version
+      path: /management/v1/node/version
+      operations:
+      - name: nodeversion
+        method: GET
+        description: Apache Ignite Get Application Version on Node
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.APACHE_IGNITE_USER}}'
+      password: '{{env.APACHE_IGNITE_PASS}}'
+  exposes:
+  - type: rest
+    namespace: rest-nodemanagement-rest
+    port: 8080
+    description: REST adapter for Apache Ignite REST module — nodeManagement. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/management/v1/node/info
+      name: management-v1-node-info
+      description: REST surface for management-v1-node-info.
+      operations:
+      - method: GET
+        name: nodeinfo
+        description: Apache Ignite Get Node Information
+        call: rest-nodemanagement.nodeinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/node/state
+      name: management-v1-node-state
+      description: REST surface for management-v1-node-state.
+      operations:
+      - method: GET
+        name: nodestate
+        description: Apache Ignite Get Node State
+        call: rest-nodemanagement.nodestate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/management/v1/node/version
+      name: management-v1-node-version
+      description: REST surface for management-v1-node-version.
+      operations:
+      - method: GET
+        name: nodeversion
+        description: Apache Ignite Get Application Version on Node
+        call: rest-nodemanagement.nodeversion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-nodemanagement-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Ignite REST module — nodeManagement. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apache-ignite-get-node-information
+      description: Apache Ignite Get Node Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-nodemanagement.nodeinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-get-node-state
+      description: Apache Ignite Get Node State
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-nodemanagement.nodestate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-ignite-get-application-version
+      description: Apache Ignite Get Application Version on Node
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-nodemanagement.nodeversion
+      outputParameters:
+      - type: object
+        mapping: $.
