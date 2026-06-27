@@ -34,31 +34,31 @@ apis:
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   - type: OpenAPI
     url: openapi/apache-ignite-rest-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-clusterconfiguration.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-clustermanagement.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-clustermetric.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-compute.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-deployment.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-nodeconfiguration.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-nodemanagement.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-nodemetric.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-recovery.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-sql.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-system.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-topology.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:java-api
   name: Apache Ignite Java Client API
