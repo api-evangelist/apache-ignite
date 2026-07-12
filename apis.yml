@@ -86,6 +86,12 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/clients/dotnet
 common:
+- type: VulnerabilityDisclosure
+  url: security/apache-ignite-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/apache-ignite-domain-security.yml
+- type: Authentication
+  url: authentication/apache-ignite-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/apache-ignite
 - type: GitHubOrganization
@@ -144,6 +150,8 @@ common:
     description: Standard JDBC driver for connecting SQL tools to Ignite clusters.
   - name: ODBC
     description: ODBC driver for BI tool integration with Ignite SQL engine.
+  - url: https://ignite.apache.org/blog/rss.xml
+    type: Blog
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
