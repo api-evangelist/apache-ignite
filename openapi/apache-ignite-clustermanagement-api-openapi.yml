@@ -1,0 +1,202 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration clusterManagement API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: clusterManagement
+paths:
+  /management/v1/cluster/init:
+    post:
+      tags:
+      - clusterManagement
+      summary: Apache Ignite Initialize Cluster
+      description: Initialize a new cluster.
+      operationId: init
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitCommand'
+            examples:
+              initRequestExample:
+                summary: Default init request
+                x-microcks-default: true
+                value:
+                  metaStorageNodes: []
+                  cmgNodes: []
+                  clusterName: example-name
+                  clusterConfiguration: example-value
+        required: true
+      responses:
+        '200':
+          description: Cluster initialized.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Incorrect configuration.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/cluster/state:
+    get:
+      tags:
+      - clusterManagement
+      summary: Apache Ignite Get Cluster State
+      description: Returns current cluster status.
+      operationId: clusterState
+      responses:
+        '200':
+          description: Cluster status returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterState'
+              examples:
+                clusterState200Example:
+                  summary: Default clusterState 200 response
+                  x-microcks-default: true
+                  value:
+                    cmgNodes: []
+                    msNodes: []
+                    igniteVersion: example-value
+                    clusterTag: example-value
+                    formerClusterIds: []
+        '404':
+          description: Cluster status not found. Most likely, the cluster is not initialized.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ClusterState:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.
+          items:
+            type: string
+        msNodes:
+          type: array
+          description: List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.
+          items:
+            type: string
+        igniteVersion:
+          type: string
+          description: Version of Apache Ignite that the cluster was created on.
+        clusterTag:
+          allOf:
+          - $ref: '#/components/schemas/ClusterTag'
+          - description: Unique tag that identifies the cluster.
+        formerClusterIds:
+          type: array
+          description: IDs the cluster had before.
+          nullable: true
+          items:
+            type: string
+            format: uuid
+      description: Information about current cluster state.
+    ClusterTag:
+      type: object
+      properties:
+        clusterId:
+          type: string
+          description: Unique cluster UUID. Generated automatically.
+          format: uuid
+        clusterName:
+          type: string
+          description: Unique cluster name.
+      description: Unique tag that identifies the cluster.
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    InitCommand:
+      type: object
+      properties:
+        metaStorageNodes:
+          type: array
+          description: A list of RAFT metastorage nodes.
+          items:
+            type: string
+        cmgNodes:
+          type: array
+          description: A list of RAFT cluster management nodes.
+          items:
+            type: string
+        clusterName:
+          type: string
+          description: The name of the cluster.
+        clusterConfiguration:
+          type: string
+          description: Cluster configuration in HOCON format.
+      description: Cluster initialization configuration.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

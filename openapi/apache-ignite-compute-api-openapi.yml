@@ -1,0 +1,343 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration compute API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: compute
+paths:
+  /management/v1/compute/jobs:
+    get:
+      tags:
+      - compute
+      summary: Apache Ignite Retrieve All Job States
+      description: Fetches the current states of all compute jobs.
+      operationId: jobStates
+      responses:
+        '200':
+          description: Successfully retrieved job states.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobState'
+              examples:
+                jobStates200Example:
+                  summary: Default jobStates 200 response
+                  x-microcks-default: true
+                  value: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/compute/jobs/{jobId}:
+    get:
+      tags:
+      - compute
+      summary: Apache Ignite Retrieve Job State
+      description: Fetches the current state of a specific compute job identified by jobId.
+      operationId: jobState
+      parameters:
+      - name: jobId
+        in: path
+        description: The unique identifier of the compute job.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the compute job.
+          format: uuid
+        example: item-8344
+      responses:
+        '200':
+          description: Successfully retrieved the job state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobState'
+              examples:
+                jobState200Example:
+                  summary: Default jobState 200 response
+                  x-microcks-default: true
+                  value:
+                    id: item-1654
+                    status: example-value
+                    createTime: '2025-03-15T14:30:00Z'
+                    startTime: '2025-03-15T14:30:00Z'
+                    finishTime: '2025-03-15T14:30:00Z'
+        '404':
+          description: Compute job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                jobState404Example:
+                  summary: Default jobState 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 37
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-5113
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - compute
+      summary: Apache Ignite Cancel Job
+      description: Cancels a specific compute job identified by jobId.
+      operationId: cancelJob
+      parameters:
+      - name: jobId
+        in: path
+        description: The unique identifier of the compute job.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the compute job.
+          format: uuid
+        example: item-2396
+      responses:
+        '200':
+          description: Successfully cancelled the job.
+          content:
+            application/json:
+              examples:
+                cancelJob200Example:
+                  summary: Default cancelJob 200 response
+                  x-microcks-default: true
+                  value: {}
+        '404':
+          description: Compute job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                cancelJob404Example:
+                  summary: Default cancelJob 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 48
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-9166
+                    invalidParams: []
+        '409':
+          description: Compute job is in an illegal state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                cancelJob409Example:
+                  summary: Default cancelJob 409 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 3
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-5374
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/compute/jobs/{jobId}/priority:
+    put:
+      tags:
+      - compute
+      summary: Apache Ignite Update Job Priority
+      description: Updates the priority of a specific compute job identified by jobId.
+      operationId: updatePriority
+      parameters:
+      - name: jobId
+        in: path
+        description: The unique identifier of the compute job.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the compute job.
+          format: uuid
+        example: item-9378
+      requestBody:
+        description: The new priority data for the job.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobPriorityBody'
+            examples:
+              updatePriorityRequestExample:
+                summary: Default updatePriority request
+                x-microcks-default: true
+                value:
+                  priority: 96
+        required: true
+      responses:
+        '200':
+          description: Successfully updated job priority.
+          content:
+            application/json:
+              examples:
+                updatePriority200Example:
+                  summary: Default updatePriority 200 response
+                  x-microcks-default: true
+                  value: {}
+        '404':
+          description: Compute job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                updatePriority404Example:
+                  summary: Default updatePriority 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 61
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-1323
+                    invalidParams: []
+        '409':
+          description: Compute job is in an illegal state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                updatePriority409Example:
+                  summary: Default updatePriority 409 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 63
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-3315
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    JobStatus:
+      type: string
+      description: Job status.
+      enum:
+      - QUEUED
+      - EXECUTING
+      - FAILED
+      - COMPLETED
+      - CANCELING
+      - CANCELED
+    JobState:
+      required:
+      - createTime
+      - id
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job ID.
+          format: uuid
+        status:
+          description: Job status.
+          allOf:
+          - $ref: '#/components/schemas/JobStatus'
+          - {}
+        createTime:
+          type: string
+          description: Job create time.
+          format: date-time
+        startTime:
+          type: string
+          description: Job start time.
+          format: date-time
+          nullable: true
+        finishTime:
+          type: string
+          description: Job finish time.
+          format: date-time
+          nullable: true
+      description: Rest representation of org.apache.ignite.compute.JobState.
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    UpdateJobPriorityBody:
+      required:
+      - priority
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: Priority.
+          format: int32
+      description: DTO of update job priority request body.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,225 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration nodeMetric API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: nodeMetric
+paths:
+  /management/v1/metric/node/disable:
+    post:
+      tags:
+      - nodeMetric
+      summary: Apache Ignite Disable Metric Source
+      description: Disables the specified metric source.
+      operationId: disableNodeMetric
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: Metric source disabled.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '404':
+          description: Metric source not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/metric/node/enable:
+    post:
+      tags:
+      - nodeMetric
+      summary: Apache Ignite Enable Metric Source
+      description: Enables the specified metric source.
+      operationId: enableNodeMetric
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: Metric source enabled.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '404':
+          description: Metric source not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/metric/node/set:
+    get:
+      tags:
+      - nodeMetric
+      summary: Apache Ignite List Metric Sets
+      description: Gets a list of all enabled metric sets.
+      operationId: listNodeMetricSets
+      responses:
+        '200':
+          description: Returned a list of metric sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricSet'
+              examples:
+                listNodeMetricSets200Example:
+                  summary: Default listNodeMetricSets 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/metric/node/source:
+    get:
+      tags:
+      - nodeMetric
+      summary: Apache Ignite List Metric Sources
+      description: Gets a list of all available metric sources.
+      operationId: listNodeMetricSources
+      responses:
+        '200':
+          description: Returned a list of metric sources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricSource'
+              examples:
+                listNodeMetricSources200Example:
+                  summary: Default listNodeMetricSources 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Metric:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric name.
+        desc:
+          type: string
+          description: Metric description.
+          nullable: true
+      description: Metric representation.
+    MetricSource:
+      required:
+      - enabled
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric source name.
+        enabled:
+          type: boolean
+          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
+      description: A list of metric sources provided by modules.
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    MetricSet:
+      required:
+      - metrics
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric set name.
+        metrics:
+          type: array
+          description: Metrics.
+          items:
+            $ref: '#/components/schemas/Metric'
+      description: Metrics set representation.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

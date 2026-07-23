@@ -1,0 +1,271 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration sql API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: sql
+paths:
+  /management/v1/sql/plan/clear-cache:
+    get:
+      tags:
+      - sql
+      summary: Apache Ignite Invalidates SQL Planner Cache.
+      description: Invalidates SQL planner cache records on node that related to provided table names.
+      operationId: clearCache
+      parameters:
+      - name: tableNames
+        in: query
+        schema:
+          type: array
+          description: SQL query plans, which are related to given tables, will be evicted from cache. Case-sensitive, cache will be reset if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      responses:
+        '200':
+          description: Successfully cleared SQL query plan cache.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/sql/queries:
+    get:
+      tags:
+      - sql
+      summary: Apache Ignite Retrieve All Running Sql Queries.
+      description: Fetches all running sql queries.
+      operationId: queries
+      responses:
+        '200':
+          description: Successfully retrieved all running sql queries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SqlQuery'
+              examples:
+                queries200Example:
+                  summary: Default queries 200 response
+                  x-microcks-default: true
+                  value: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/sql/queries/{queryId}:
+    get:
+      tags:
+      - sql
+      summary: Apache Ignite Retrieve Sql Query.
+      description: Fetches the current state of a specific sql query.
+      operationId: query
+      parameters:
+      - name: queryId
+        in: path
+        description: The unique identifier of the sql query.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the sql query.
+          format: uuid
+        example: item-2992
+      responses:
+        '200':
+          description: Successfully retrieved the sql query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SqlQuery'
+              examples:
+                query200Example:
+                  summary: Default query 200 response
+                  x-microcks-default: true
+                  value:
+                    id: item-4876
+                    node: example-value
+                    phase: example-value
+                    type: example-value
+                    schema: example-value
+                    sql: example-value
+                    startTime: '2025-03-15T14:30:00Z'
+        '404':
+          description: Query not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                query404Example:
+                  summary: Default query 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 63
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-9430
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - sql
+      summary: Apache Ignite Kill Sql Query.
+      description: Kills a specific sql query identified by query id.
+      operationId: killQuery
+      parameters:
+      - name: queryId
+        in: path
+        description: The unique identifier of the sql query.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the sql query.
+          format: uuid
+        example: item-4081
+      responses:
+        '200':
+          description: Successfully killed the sql query.
+          content:
+            application/json:
+              examples:
+                killQuery200Example:
+                  summary: Default killQuery 200 response
+                  x-microcks-default: true
+                  value: {}
+        '404':
+          description: Query not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                killQuery404Example:
+                  summary: Default killQuery 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 50
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-3545
+                    invalidParams: []
+        '409':
+          description: Query is in an illegal state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                killQuery409Example:
+                  summary: Default killQuery 409 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 53
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-4354
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    SqlQuery:
+      required:
+      - id
+      - node
+      - phase
+      - schema
+      - sql
+      - startTime
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Sql query ID.
+          format: uuid
+        node:
+          type: string
+          description: Initiator node.
+        phase:
+          type: string
+          description: Phase.
+        type:
+          type: string
+          description: Type.
+        schema:
+          type: string
+          description: Schema.
+        sql:
+          type: string
+          description: SQL statement.
+        startTime:
+          type: string
+          description: Start time.
+          format: date-time
+      description: Rest representation of sql query.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

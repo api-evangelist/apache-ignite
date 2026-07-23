@@ -1,0 +1,845 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration recovery API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: recovery
+paths:
+  /management/v1/recovery/cluster/migrate:
+    post:
+      tags:
+      - recovery
+      description: Migrates nodes from old cluster to new (repaired) cluster.
+      operationId: migrate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateRequest'
+            examples:
+              migrateRequestExample:
+                summary: Default migrate request
+                x-microcks-default: true
+                value:
+                  cmgNodes: []
+                  metaStorageNodes: []
+                  version: example-value
+                  clusterId: item-5239
+                  clusterName: example-name
+                  formerClusterIds: []
+        required: true
+      responses:
+        '200':
+          description: Migration initiated.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/cluster/reset:
+    post:
+      tags:
+      - recovery
+      description: Initiates cluster reset to repair CMG/Metastorage group/both.
+      operationId: resetCluster
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetClusterRequest'
+            examples:
+              resetClusterRequestExample:
+                summary: Default resetCluster request
+                x-microcks-default: true
+                value:
+                  cmgNodeNames: []
+                  metastorageReplicationFactor: 50
+        required: true
+      responses:
+        '200':
+          description: Cluster reset initiated.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/partitions/reset:
+    post:
+      tags:
+      - recovery
+      description: Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost majorities.
+      operationId: resetPartitions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPartitionsRequest'
+            examples:
+              resetPartitionsRequestExample:
+                summary: Default resetPartitions request
+                x-microcks-default: true
+                value:
+                  zoneName: example-name
+                  partitionIds: []
+                  tableName: example-name
+        required: true
+      responses:
+        '200':
+          description: Partition states reset.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/partitions/restart:
+    post:
+      tags:
+      - recovery
+      description: Restarts replica service and raft group of passed partitions.
+      operationId: restartPartitions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestartPartitionsRequest'
+            examples:
+              restartPartitionsRequestExample:
+                summary: Default restartPartitions request
+                x-microcks-default: true
+                value:
+                  nodeNames: []
+                  zoneName: example-name
+                  partitionIds: []
+                  tableName: example-name
+        required: true
+      responses:
+        '200':
+          description: Partitions restarted.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/partitions/restartWithCleanup:
+    post:
+      tags:
+      - recovery
+      description: Restarts replica service and raft group of passed partitions with cleaning up of the storage.
+      operationId: restartPartitionsWithCleanup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestartPartitionsRequest'
+            examples:
+              restartPartitionsWithCleanupRequestExample:
+                summary: Default restartPartitionsWithCleanup request
+                x-microcks-default: true
+                value:
+                  nodeNames: []
+                  zoneName: example-name
+                  partitionIds: []
+                  tableName: example-name
+        required: true
+      responses:
+        '200':
+          description: Partitions restarted.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/state/global:
+    get:
+      tags:
+      - recovery
+      description: Returns global partition states.
+      operationId: getGlobalPartitionStates
+      parameters:
+      - name: zoneNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: partitionIds
+        in: query
+        schema:
+          type: array
+          description: IDs of partitions to get states of. All partitions if empty.
+          nullable: true
+          items:
+            type: integer
+            format: int32
+        example: []
+      responses:
+        '200':
+          description: Partition states returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalPartitionStatesResponse'
+              examples:
+                getGlobalPartitionStates200Example:
+                  summary: Default getGlobalPartitionStates 200 response
+                  x-microcks-default: true
+                  value:
+                    states: []
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/state/local:
+    get:
+      tags:
+      - recovery
+      description: Returns local partition states.
+      operationId: getLocalPartitionStates
+      parameters:
+      - name: zoneNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: nodeNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying nodes to get partition states from. Case-sensitive, all nodes if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: partitionIds
+        in: query
+        schema:
+          type: array
+          description: IDs of partitions to get states. All partitions if empty.
+          nullable: true
+          items:
+            type: integer
+            format: int32
+        example: []
+      responses:
+        '200':
+          description: Partition states returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalPartitionStatesResponse'
+              examples:
+                getLocalPartitionStates200Example:
+                  summary: Default getLocalPartitionStates 200 response
+                  x-microcks-default: true
+                  value:
+                    states: []
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/zone/partitions/reset:
+    post:
+      tags:
+      - recovery
+      description: Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups with lost majorities.
+      operationId: resetZonePartitions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetZonePartitionsRequest'
+            examples:
+              resetZonePartitionsRequestExample:
+                summary: Default resetZonePartitions request
+                x-microcks-default: true
+                value:
+                  zoneName: example-name
+                  partitionIds: []
+        required: true
+      responses:
+        '200':
+          description: Partition states reset.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/zone/partitions/restart:
+    post:
+      tags:
+      - recovery
+      description: Restarts replica service and raft group of passed zone partitions.
+      operationId: restartZonePartitions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestartZonePartitionsRequest'
+            examples:
+              restartZonePartitionsRequestExample:
+                summary: Default restartZonePartitions request
+                x-microcks-default: true
+                value:
+                  nodeNames: []
+                  zoneName: example-name
+                  partitionIds: []
+        required: true
+      responses:
+        '200':
+          description: Zone partitions restarted.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/zone/partitions/restartWithCleanup:
+    post:
+      tags:
+      - recovery
+      description: Restarts replica service and raft group of passed zone partitions with cleaning up of the storage.
+      operationId: restartZonePartitionsWithCleanup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestartZonePartitionsRequest'
+            examples:
+              restartZonePartitionsWithCleanupRequestExample:
+                summary: Default restartZonePartitionsWithCleanup request
+                x-microcks-default: true
+                value:
+                  nodeNames: []
+                  zoneName: example-name
+                  partitionIds: []
+        required: true
+      responses:
+        '200':
+          description: Zone partitions restarted.
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/zone/state/global:
+    get:
+      tags:
+      - recovery
+      description: Returns global zone partition states.
+      operationId: getZoneGlobalPartitionStates
+      parameters:
+      - name: zoneNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: partitionIds
+        in: query
+        schema:
+          type: array
+          description: IDs of partitions to get states of. All partitions if empty.
+          nullable: true
+          items:
+            type: integer
+            format: int32
+        example: []
+      responses:
+        '200':
+          description: Zone partition states returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalZonePartitionStatesResponse'
+              examples:
+                getZoneGlobalPartitionStates200Example:
+                  summary: Default getZoneGlobalPartitionStates 200 response
+                  x-microcks-default: true
+                  value:
+                    states: []
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/recovery/zone/state/local:
+    get:
+      tags:
+      - recovery
+      description: Returns local zone partition states.
+      operationId: getZoneLocalPartitionStates
+      parameters:
+      - name: zoneNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: nodeNames
+        in: query
+        schema:
+          type: array
+          description: Names specifying nodes to get partition states from. Case-sensitive, all nodes if empty.
+          nullable: true
+          items:
+            type: string
+        example: []
+      - name: partitionIds
+        in: query
+        schema:
+          type: array
+          description: IDs of partitions to get states. All partitions if empty.
+          nullable: true
+          items:
+            type: integer
+            format: int32
+        example: []
+      responses:
+        '200':
+          description: Zone partition states returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalZonePartitionStatesResponse'
+              examples:
+                getZoneLocalPartitionStates200Example:
+                  summary: Default getZoneLocalPartitionStates 200 response
+                  x-microcks-default: true
+                  value:
+                    states: []
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LocalPartitionStateResponse:
+      required:
+      - estimatedRows
+      - nodeName
+      - partitionId
+      - schemaName
+      - state
+      - tableId
+      - tableName
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        tableId:
+          type: integer
+          format: int32
+        schemaName:
+          type: string
+        tableName:
+          type: string
+        nodeName:
+          type: string
+        state:
+          type: string
+        estimatedRows:
+          type: integer
+          format: int64
+      description: Information about local partition state.
+    ResetZonePartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+      description: Reset zone partitions configuration.
+    GlobalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
+      description: Information about global zone partition states.
+    GlobalPartitionStateResponse:
+      required:
+      - partitionId
+      - schemaName
+      - state
+      - tableId
+      - tableName
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        tableId:
+          type: integer
+          format: int32
+        schemaName:
+          type: string
+        tableName:
+          type: string
+        state:
+          type: string
+      description: Information about global partition state.
+    RestartZonePartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart zone partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+      description: restart partitions configuration.
+    GlobalZonePartitionStateResponse:
+      required:
+      - partitionId
+      - state
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        state:
+          type: string
+      description: Information about global zone partition state.
+    ResetPartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
+      description: Reset partitions configuration.
+    ResetClusterRequest:
+      type: object
+      properties:
+        cmgNodeNames:
+          type: array
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          nullable: true
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type: integer
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+          nullable: true
+      description: Reset cluster.
+    MigrateRequest:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: Names of the CMG node names.
+          items:
+            type: string
+        metaStorageNodes:
+          type: array
+          description: Names of the Metastorage node names.
+          items:
+            type: string
+        version:
+          type: string
+          description: Ignite version.
+        clusterId:
+          type: string
+          description: ID of the cluster.
+          format: uuid
+        clusterName:
+          type: string
+          description: Name of the cluster.
+        formerClusterIds:
+          type: array
+          description: IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.
+          nullable: true
+          items:
+            type: string
+            format: uuid
+      description: Migrate nodes to new cluster.
+    GlobalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalPartitionStateResponse'
+      description: Information about global partition states.
+    LocalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
+      description: Information about local zone partition states.
+    LocalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalPartitionStateResponse'
+      description: Information about local partition states.
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    RestartPartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to restart partitions of.
+      description: restart partitions configuration.
+    LocalZonePartitionStateResponse:
+      required:
+      - estimatedRows
+      - nodeName
+      - partitionId
+      - state
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        nodeName:
+          type: string
+        state:
+          type: string
+        estimatedRows:
+          type: integer
+          format: int64
+      description: Information about local zone partition state.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

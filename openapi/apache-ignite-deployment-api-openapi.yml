@@ -1,0 +1,513 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration deployment API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: deployment
+paths:
+  /management/v1/deployment/cluster/units:
+    get:
+      tags:
+      - deployment
+      summary: Apache Ignite Get Cluster Unit Statuses
+      description: Cluster unit statuses.
+      operationId: listClusterStatuses
+      parameters:
+      - name: statuses
+        in: query
+        schema:
+          type: array
+          description: Deployment status filter.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeploymentStatus'
+        example: []
+      responses:
+        '200':
+          description: All statuses returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnitStatus'
+              examples:
+                listClusterStatuses200Example:
+                  summary: Default listClusterStatuses 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/deployment/cluster/units/{unitId}:
+    get:
+      tags:
+      - deployment
+      summary: Apache Ignite Get Specific Cluster Unit Statuses
+      description: Cluster unit statuses by unit.
+      operationId: listClusterStatusesByUnit
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment unit.
+        example: item-6019
+      - name: version
+        in: query
+        schema:
+          type: string
+          description: Unit version filter.
+          nullable: true
+        example: example-value
+      - name: statuses
+        in: query
+        schema:
+          type: array
+          description: Deployment status filter.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeploymentStatus'
+        example: []
+      responses:
+        '200':
+          description: All statuses returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnitStatus'
+              examples:
+                listClusterStatusesByUnit200Example:
+                  summary: Default listClusterStatusesByUnit 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/deployment/node/units:
+    get:
+      tags:
+      - deployment
+      summary: Apache Ignite Get Node Unit Statuses
+      description: Returns a list of unit statuses per node.
+      operationId: listNodeStatuses
+      parameters:
+      - name: statuses
+        in: query
+        schema:
+          type: array
+          description: Deployment status filter.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeploymentStatus'
+        example: []
+      responses:
+        '200':
+          description: All statuses were returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnitStatus'
+              examples:
+                listNodeStatuses200Example:
+                  summary: Default listNodeStatuses 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/deployment/node/units/{unitId}:
+    get:
+      tags:
+      - deployment
+      summary: Apache Ignite Get Specific Node Unit Statuses
+      description: Returns a list of node unit statuses by unit.
+      operationId: listNodeStatusesByUnit
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment unit.
+        example: item-8168
+      - name: version
+        in: query
+        schema:
+          type: string
+          description: Unit version filter.
+          nullable: true
+        example: example-value
+      - name: statuses
+        in: query
+        schema:
+          type: array
+          description: Deployment status filter.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeploymentStatus'
+        example: []
+      responses:
+        '200':
+          description: All statuses returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnitStatus'
+              examples:
+                listNodeStatusesByUnit200Example:
+                  summary: Default listNodeStatusesByUnit 200 response
+                  x-microcks-default: true
+                  value: {}
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/deployment/units/zip/{unitId}/{unitVersion}:
+    post:
+      tags:
+      - deployment
+      summary: Apache Ignite Deploy Unit with Folders Structure in Zip.
+      description: Deploys provided unit in zip file to the cluster with folders structure.
+      operationId: deployZipUnit
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment unit.
+        example: item-1689
+      - name: unitVersion
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The version of the deployment unit.
+        example: example-value
+      - name: deployMode
+        in: query
+        schema:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/deployMode'
+          - description: ALL or MAJORITY.
+        example: example-value
+      - name: initialNodes
+        in: query
+        schema:
+          type: array
+          description: List of node identifiers to deploy to.
+          nullable: true
+          items:
+            type: string
+        example: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - unitContent
+              type: object
+              properties:
+                unitContent:
+                  type: array
+                  description: The zip file with unit content to deploy.
+                  items:
+                    type: string
+                    format: binary
+            encoding: {}
+        required: true
+      responses:
+        '200':
+          description: Unit deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+              examples:
+                deployZipUnit200Example:
+                  summary: Default deployZipUnit 200 response
+                  x-microcks-default: true
+                  value: {}
+        '409':
+          description: Unit with same identifier and version is already deployed.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Deployment unit with unzip supports only single zip file.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/deployment/units/{unitId}/{unitVersion}:
+    post:
+      tags:
+      - deployment
+      summary: Apache Ignite Deploy Unit
+      description: Deploys provided unit to the cluster.
+      operationId: deployUnit
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment unit.
+        example: item-3830
+      - name: unitVersion
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The version of the deployment unit.
+        example: example-value
+      - name: deployMode
+        in: query
+        schema:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/deployMode'
+          - description: ALL or MAJORITY.
+        example: example-value
+      - name: initialNodes
+        in: query
+        schema:
+          type: array
+          description: List of node identifiers to deploy to.
+          nullable: true
+          items:
+            type: string
+        example: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - unitContent
+              type: object
+              properties:
+                unitContent:
+                  type: array
+                  description: The code to deploy.
+                  items:
+                    type: string
+                    format: binary
+            encoding: {}
+        required: true
+      responses:
+        '200':
+          description: Unit deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+              examples:
+                deployUnit200Example:
+                  summary: Default deployUnit 200 response
+                  x-microcks-default: true
+                  value: {}
+        '409':
+          description: Unit with same identifier and version is already deployed.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - deployment
+      summary: Apache Ignite Undeploy Unit
+      description: Undeploys the unit with provided unitId and unitVersion.
+      operationId: undeployUnit
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment unit.
+        example: item-8579
+      - name: unitVersion
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The version of the deployment unit.
+        example: example-value
+      responses:
+        '200':
+          description: Unit undeployed successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+              examples:
+                undeployUnit200Example:
+                  summary: Default undeployUnit 200 response
+                  x-microcks-default: true
+                  value: {}
+        '404':
+          description: Unit with provided identifier and version does not exist.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UnitStatus:
+      required:
+      - id
+      - versionToStatus
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unit identifier.
+        versionToStatus:
+          type: array
+          description: Map from unit version to unit deployment status.
+          items:
+            $ref: '#/components/schemas/UnitVersionStatus'
+      description: Unit status.
+    UnitVersionStatus:
+      required:
+      - status
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: Unit version.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DeploymentStatus'
+          - description: Unit status.
+      description: Unit version and status.
+    DeploymentStatus:
+      type: string
+      description: Status of deployment process.
+      enum:
+      - UPLOADING
+      - DEPLOYED
+      - OBSOLETE
+      - REMOVING
+    deployMode:
+      type: string
+      description: Initial set of nodes to deploy.
+      enum:
+      - MAJORITY
+      - ALL
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

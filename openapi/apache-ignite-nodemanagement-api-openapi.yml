@@ -1,0 +1,195 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration nodeManagement API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: nodeManagement
+paths:
+  /management/v1/node/info:
+    get:
+      tags:
+      - nodeManagement
+      summary: Apache Ignite Get Node Information
+      description: Gets information about the node.
+      operationId: nodeInfo
+      responses:
+        '200':
+          description: Node info.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeInfo'
+              examples:
+                nodeInfo200Example:
+                  summary: Default nodeInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    name: example-name
+                    jdbcPort: 48
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/node/state:
+    get:
+      tags:
+      - nodeManagement
+      summary: Apache Ignite Get Node State
+      description: Gets node state.
+      operationId: nodeState
+      responses:
+        '200':
+          description: Node state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeState'
+              examples:
+                nodeState200Example:
+                  summary: Default nodeState 200 response
+                  x-microcks-default: true
+                  value:
+                    name: example-name
+                    state: example-value
+        '500':
+          description: Internal error.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/node/version:
+    get:
+      tags:
+      - nodeManagement
+      summary: Apache Ignite Get Application Version on Node
+      description: Gets the version of Apache Ignite the node uses.
+      operationId: nodeVersion
+      responses:
+        '200':
+          description: Node version.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/NodeVersion'
+        '500':
+          description: Internal error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NodeVersion:
+      required:
+      - product
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: Node version.
+        product:
+          type: string
+          description: Node product.
+      description: Node version.
+    State:
+      type: string
+      description: Possible node states.
+      enum:
+      - STARTING
+      - STARTED
+      - STOPPING
+    NodeInfo:
+      required:
+      - jdbcPort
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique node name.
+        jdbcPort:
+          type: integer
+          description: Node JDBC port.
+          format: int32
+      description: Node info.
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    NodeState:
+      required:
+      - name
+      - state
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique node name.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/State'
+          - description: Node state.
+      description: Node state.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

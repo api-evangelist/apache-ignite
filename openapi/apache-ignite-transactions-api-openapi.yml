@@ -1,0 +1,243 @@
+openapi: 3.0.1
+info:
+  title: Apache Ignite REST module clusterConfiguration transactions API
+  contact:
+    email: user@ignite.apache.org
+  license:
+    name: Apache 2.0
+    url: https://ignite.apache.org
+  version: 3.1.0
+servers:
+- url: http://localhost:10300
+security:
+- basicAuth: []
+tags:
+- name: transactions
+paths:
+  /management/v1/transactions:
+    get:
+      tags:
+      - transactions
+      summary: Apache Ignite Retrieve All in Progress Transactions
+      description: Fetches all in progress transactions.
+      operationId: transactions
+      responses:
+        '200':
+          description: Successfully retrieved in progress transactions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+              examples:
+                transactions200Example:
+                  summary: Default transactions 200 response
+                  x-microcks-default: true
+                  value: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /management/v1/transactions/{transactionId}:
+    get:
+      tags:
+      - transactions
+      summary: Apache Ignite Retrieve Transaction State
+      description: Fetches the current state of a specific transaction identified by transactionId.
+      operationId: transaction
+      parameters:
+      - name: transactionId
+        in: path
+        description: The unique identifier of the transaction.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the transaction.
+          format: uuid
+        example: item-3443
+      responses:
+        '200':
+          description: Successfully retrieved the transaction state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+              examples:
+                transaction200Example:
+                  summary: Default transaction 200 response
+                  x-microcks-default: true
+                  value:
+                    id: item-1730
+                    node: example-value
+                    state: example-value
+                    type: example-value
+                    priority: example-value
+                    startTime: '2025-03-15T14:30:00Z'
+        '404':
+          description: Transaction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                transaction404Example:
+                  summary: Default transaction 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 72
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-1319
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      tags:
+      - transactions
+      summary: Apache Ignite Kill Transaction.
+      description: Kills a specific transaction identified by transactionId.
+      operationId: killTransaction
+      parameters:
+      - name: transactionId
+        in: path
+        description: The unique identifier of the transaction.
+        required: true
+        schema:
+          type: string
+          description: The unique identifier of the transaction.
+          format: uuid
+        example: item-2473
+      responses:
+        '200':
+          description: Successfully killed the transaction.
+          content:
+            application/json:
+              examples:
+                killTransaction200Example:
+                  summary: Default killTransaction 200 response
+                  x-microcks-default: true
+                  value: {}
+        '404':
+          description: Transaction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                killTransaction404Example:
+                  summary: Default killTransaction 404 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 8
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-7174
+                    invalidParams: []
+        '409':
+          description: Transaction is in an illegal state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              examples:
+                killTransaction409Example:
+                  summary: Default killTransaction 409 response
+                  x-microcks-default: true
+                  value:
+                    title: example-value
+                    status: 16
+                    code: example-value
+                    type: example-value
+                    detail: example-value
+                    node: example-value
+                    traceId: item-4418
+                    invalidParams: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Problem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Short summary of the issue.
+        status:
+          type: integer
+          description: Returned HTTP status code.
+          format: int32
+        code:
+          type: string
+          description: Ignite 3 error code.
+        type:
+          type: string
+          description: URI to documentation regarding the issue.
+        detail:
+          type: string
+          description: Extended explanation of the issue.
+        node:
+          type: string
+          description: Name of the node the issue happened on.
+        traceId:
+          type: string
+          description: Unique issue identifier. This identifier can be used to find logs related to the issue.
+          format: uuid
+        invalidParams:
+          type: array
+          description: A list of parameters that did not pass validation and the reason for it.
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+      description: Extended description of the problem with the request.
+    Transaction:
+      required:
+      - id
+      - node
+      - priority
+      - startTime
+      - state
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Transaction ID.
+          format: uuid
+        node:
+          type: string
+          description: Coordinator node.
+        state:
+          type: string
+          description: State.
+        type:
+          type: string
+          description: Type.
+        priority:
+          type: string
+          description: Priority.
+        startTime:
+          type: string
+          description: Start time.
+          format: date-time
+      description: Rest representation of transaction.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
