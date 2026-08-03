@@ -1,0 +1,38 @@
+{
+  "provider": "apache-ignite",
+  "sources": [
+    "apache-ignite-clusterconfiguration-api-openapi.yml",
+    "apache-ignite-clustermanagement-api-openapi.yml",
+    "apache-ignite-clustermetric-api-openapi.yml",
+    "apache-ignite-compute-api-openapi.yml",
+    "apache-ignite-deployment-api-openapi.yml",
+    "apache-ignite-nodeconfiguration-api-openapi.yml",
+    "apache-ignite-nodemanagement-api-openapi.yml",
+    "apache-ignite-nodemetric-api-openapi.yml",
+    "apache-ignite-recovery-api-openapi.yml",
+    "apache-ignite-sql-api-openapi.yml",
+    "apache-ignite-system-api-openapi.yml",
+    "apache-ignite-topology-api-openapi.yml",
+    "apache-ignite-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-ignite-clusterconfiguration-api-openapi.yml",
+    "apache-ignite-clustermanagement-api-openapi.yml",
+    "apache-ignite-clustermetric-api-openapi.yml",
+    "apache-ignite-compute-api-openapi.yml",
+    "apache-ignite-deployment-api-openapi.yml",
+    "apache-ignite-nodeconfiguration-api-openapi.yml",
+    "apache-ignite-nodemanagement-api-openapi.yml",
+    "apache-ignite-nodemetric-api-openapi.yml",
+    "apache-ignite-recovery-api-openapi.yml",
+    "apache-ignite-sql-api-openapi.yml",
+    "apache-ignite-system-api-openapi.yml",
+    "apache-ignite-topology-api-openapi.yml",
+    "apache-ignite-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
