@@ -71,32 +71,6 @@ apis:
     url: openapi/apache-ignite-clusterconfiguration-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-clustermanagement-api
   name: Apache Ignite clusterManagement API
   description: The clusterManagement API from Apache Ignite — 2 operation(s) for clustermanagement.
@@ -108,32 +82,6 @@ apis:
     url: openapi/apache-ignite-clustermanagement-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-clustermetric-api
   name: Apache Ignite clusterMetric API
   description: The clusterMetric API from Apache Ignite — 3 operation(s) for clustermetric.
@@ -145,32 +93,6 @@ apis:
     url: openapi/apache-ignite-clustermetric-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-compute-api
   name: Apache Ignite compute API
   description: The compute API from Apache Ignite — 3 operation(s) for compute.
@@ -182,32 +104,6 @@ apis:
     url: openapi/apache-ignite-compute-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-deployment-api
   name: Apache Ignite deployment API
   description: The deployment API from Apache Ignite — 6 operation(s) for deployment.
@@ -219,32 +115,6 @@ apis:
     url: openapi/apache-ignite-deployment-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-nodeconfiguration-api
   name: Apache Ignite nodeConfiguration API
   description: The nodeConfiguration API from Apache Ignite — 2 operation(s) for nodeconfiguration.
@@ -256,32 +126,6 @@ apis:
     url: openapi/apache-ignite-nodeconfiguration-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-nodemanagement-api
   name: Apache Ignite nodeManagement API
   description: The nodeManagement API from Apache Ignite — 3 operation(s) for nodemanagement.
@@ -293,32 +137,6 @@ apis:
     url: openapi/apache-ignite-nodemanagement-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-nodemetric-api
   name: Apache Ignite nodeMetric API
   description: The nodeMetric API from Apache Ignite — 4 operation(s) for nodemetric.
@@ -330,32 +148,6 @@ apis:
     url: openapi/apache-ignite-nodemetric-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-recovery-api
   name: Apache Ignite recovery API
   description: The recovery API from Apache Ignite — 12 operation(s) for recovery.
@@ -367,32 +159,6 @@ apis:
     url: openapi/apache-ignite-recovery-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-sql-api
   name: Apache Ignite sql API
   description: The sql API from Apache Ignite — 3 operation(s) for sql.
@@ -404,32 +170,6 @@ apis:
     url: openapi/apache-ignite-sql-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-system-api
   name: Apache Ignite system API
   description: The system API from Apache Ignite — 2 operation(s) for system.
@@ -441,32 +181,6 @@ apis:
     url: openapi/apache-ignite-system-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-topology-api
   name: Apache Ignite topology API
   description: The topology API from Apache Ignite — 2 operation(s) for topology.
@@ -478,32 +192,6 @@ apis:
     url: openapi/apache-ignite-topology-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 - aid: apache-ignite:apache-ignite-transactions-api
   name: Apache Ignite transactions API
   description: The transactions API from Apache Ignite — 2 operation(s) for transactions.
@@ -515,33 +203,14 @@ apis:
     url: openapi/apache-ignite-transactions-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clusterconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-clustermetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-compute.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-deployment.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodeconfiguration.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemanagement.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-nodemetric.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-recovery.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-sql.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-system.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-topology.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/rest-transactions.yaml
 common:
+- type: CodeOfConduct
+  url: https://github.com/apache/.github/blob/main/.github/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/apache/ignite-3/blob/main/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/apache/ignite-3/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/apache-ignite-agentic-access.yml
 - type: VulnerabilityDisclosure
