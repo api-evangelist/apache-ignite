@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration compute API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "compute",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve All Job States",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/compute/jobs"
+          },
+          "docs": "Fetches the current states of all compute jobs."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve Job State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/compute/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "item-8344",
+                "type": "path",
+                "description": "The unique identifier of the compute job."
+              }
+            ]
+          },
+          "docs": "Fetches the current state of a specific compute job identified by jobId."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Cancel Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:10300/management/v1/compute/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "item-2396",
+                "type": "path",
+                "description": "The unique identifier of the compute job."
+              }
+            ]
+          },
+          "docs": "Cancels a specific compute job identified by jobId."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Update Job Priority",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:10300/management/v1/compute/jobs/:jobId/priority",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "item-9378",
+                "type": "path",
+                "description": "The unique identifier of the compute job."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the priority of a specific compute job identified by jobId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration deployment API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Get Cluster Unit Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/deployment/cluster/units",
+            "params": [
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cluster unit statuses."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Specific Cluster Unit Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/deployment/cluster/units/:unitId",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "item-6019",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cluster unit statuses by unit."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Node Unit Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/deployment/node/units",
+            "params": [
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of unit statuses per node."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Specific Node Unit Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/deployment/node/units/:unitId",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "item-8168",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of node unit statuses by unit."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Deploy Unit with Folders Structure in Zip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/deployment/units/zip/:unitId/:unitVersion",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "item-1689",
+                "type": "path"
+              },
+              {
+                "name": "unitVersion",
+                "value": "example-value",
+                "type": "path"
+              },
+              {
+                "name": "deployMode",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "initialNodes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "unitContent",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deploys provided unit in zip file to the cluster with folders structure."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Deploy Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/deployment/units/:unitId/:unitVersion",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "item-3830",
+                "type": "path"
+              },
+              {
+                "name": "unitVersion",
+                "value": "example-value",
+                "type": "path"
+              },
+              {
+                "name": "deployMode",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "initialNodes",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "unitContent",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deploys provided unit to the cluster."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Undeploy Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:10300/management/v1/deployment/units/:unitId/:unitVersion",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "item-8579",
+                "type": "path"
+              },
+              {
+                "name": "unitVersion",
+                "value": "example-value",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Undeploys the unit with provided unitId and unitVersion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

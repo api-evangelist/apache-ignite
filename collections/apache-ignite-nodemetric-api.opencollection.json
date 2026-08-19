@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration nodeMetric API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nodeMetric",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Disable Metric Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/metric/node/disable"
+          },
+          "docs": "Disables the specified metric source."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Enable Metric Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/metric/node/enable"
+          },
+          "docs": "Enables the specified metric source."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite List Metric Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/metric/node/set"
+          },
+          "docs": "Gets a list of all enabled metric sets."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite List Metric Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/metric/node/source"
+          },
+          "docs": "Gets a list of all available metric sources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration nodeManagement API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "nodeManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Get Node Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/node/info"
+          },
+          "docs": "Gets information about the node."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Node State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/node/state"
+          },
+          "docs": "Gets node state."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Application Version on Node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/node/version"
+          },
+          "docs": "Gets the version of Apache Ignite the node uses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration sql API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sql",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Invalidates SQL Planner Cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/sql/plan/clear-cache",
+            "params": [
+              {
+                "name": "tableNames",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Invalidates SQL planner cache records on node that related to provided table names."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve All Running Sql Queries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/sql/queries"
+          },
+          "docs": "Fetches all running sql queries."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve Sql Query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/sql/queries/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "item-2992",
+                "type": "path",
+                "description": "The unique identifier of the sql query."
+              }
+            ]
+          },
+          "docs": "Fetches the current state of a specific sql query."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Kill Sql Query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:10300/management/v1/sql/queries/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "item-4081",
+                "type": "path",
+                "description": "The unique identifier of the sql query."
+              }
+            ]
+          },
+          "docs": "Kills a specific sql query identified by query id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

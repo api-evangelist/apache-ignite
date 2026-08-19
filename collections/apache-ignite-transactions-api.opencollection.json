@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration transactions API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve All in Progress Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/transactions"
+          },
+          "docs": "Fetches all in progress transactions."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Retrieve Transaction State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "item-3443",
+                "type": "path",
+                "description": "The unique identifier of the transaction."
+              }
+            ]
+          },
+          "docs": "Fetches the current state of a specific transaction identified by transactionId."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Kill Transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:10300/management/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "item-2473",
+                "type": "path",
+                "description": "The unique identifier of the transaction."
+              }
+            ]
+          },
+          "docs": "Kills a specific transaction identified by transactionId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

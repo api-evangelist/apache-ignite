@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "clusterConfiguration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Get Cluster Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/configuration/cluster"
+          },
+          "docs": "Gets the current configuration of the cluster. The configuration is returned in HOCON format."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Update Cluster Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:10300/management/v1/configuration/cluster"
+          },
+          "docs": "Updates cluster configuration. New configuration should be provided in HOCON format."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Configuration Represented by Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/configuration/cluster/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "example-value",
+                "type": "path",
+                "description": "Configuration tree address. For example: `element.subelement`."
+              }
+            ]
+          },
+          "docs": "Gets the configuration on the specific path. Configuration is in HOCON format"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

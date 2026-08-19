@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration recovery API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "recovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "migrate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/cluster/migrate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Migrates nodes from old cluster to new (repaired) cluster."
+        },
+        {
+          "info": {
+            "name": "resetCluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/cluster/reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates cluster reset to repair CMG/Metastorage group/both."
+        },
+        {
+          "info": {
+            "name": "resetPartitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/partitions/reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost majorities."
+        },
+        {
+          "info": {
+            "name": "restartPartitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/partitions/restart",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restarts replica service and raft group of passed partitions."
+        },
+        {
+          "info": {
+            "name": "restartPartitionsWithCleanup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/partitions/restartWithCleanup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restarts replica service and raft group of passed partitions with cleaning up of the storage."
+        },
+        {
+          "info": {
+            "name": "getGlobalPartitionStates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/recovery/state/global",
+            "params": [
+              {
+                "name": "zoneNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "partitionIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns global partition states."
+        },
+        {
+          "info": {
+            "name": "getLocalPartitionStates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/recovery/state/local",
+            "params": [
+              {
+                "name": "zoneNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nodeNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "partitionIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns local partition states."
+        },
+        {
+          "info": {
+            "name": "resetZonePartitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/zone/partitions/reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups with lost majorities."
+        },
+        {
+          "info": {
+            "name": "restartZonePartitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/zone/partitions/restart",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restarts replica service and raft group of passed zone partitions."
+        },
+        {
+          "info": {
+            "name": "restartZonePartitionsWithCleanup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/recovery/zone/partitions/restartWithCleanup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restarts replica service and raft group of passed zone partitions with cleaning up of the storage."
+        },
+        {
+          "info": {
+            "name": "getZoneGlobalPartitionStates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/recovery/zone/state/global",
+            "params": [
+              {
+                "name": "zoneNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "partitionIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns global zone partition states."
+        },
+        {
+          "info": {
+            "name": "getZoneLocalPartitionStates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/recovery/zone/state/local",
+            "params": [
+              {
+                "name": "zoneNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nodeNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "partitionIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns local zone partition states."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

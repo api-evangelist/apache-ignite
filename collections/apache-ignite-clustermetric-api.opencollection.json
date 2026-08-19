@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration clusterMetric API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "clusterMetric",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Disable Metric Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/metric/cluster/disable"
+          },
+          "docs": "Disables the specified metric source."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Enable Metric Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:10300/management/v1/metric/cluster/enable"
+          },
+          "docs": "Enables the specified metric source."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite List Metric Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/metric/cluster/source"
+          },
+          "docs": "Gets a list of all available metric sources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

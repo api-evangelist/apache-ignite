@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Ignite REST module clusterConfiguration topology API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "topology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache Ignite Get Logical Topology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/cluster/topology/logical"
+          },
+          "docs": "Gets information about logical cluster topology."
+        },
+        {
+          "info": {
+            "name": "Apache Ignite Get Physical Topology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:10300/management/v1/cluster/topology/physical"
+          },
+          "docs": "Gets information about physical cluster topology."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
