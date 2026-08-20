@@ -25,6 +25,13 @@ tags:
 - Compute Grid
 - Distributed Database
 - In-Memory
+- Open-Source
+- SQL
+tags_raw:
+- Caching
+- Compute Grid
+- Distributed Database
+- In-Memory
 - Open Source
 - SQL
 created: '2026-03-16'
@@ -64,7 +71,8 @@ apis:
   description: >-
     The clusterConfiguration API from Apache Ignite — 2 operation(s) for clusterconfiguration.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
+  tags: []
+  tags_raw:
   - clusterConfiguration
   properties:
   - type: OpenAPI
@@ -76,6 +84,8 @@ apis:
   description: The clusterManagement API from Apache Ignite — 2 operation(s) for clustermanagement.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Cluster Management
+  tags_raw:
   - clusterManagement
   properties:
   - type: OpenAPI
@@ -86,7 +96,8 @@ apis:
   name: Apache Ignite clusterMetric API
   description: The clusterMetric API from Apache Ignite — 3 operation(s) for clustermetric.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
+  tags: []
+  tags_raw:
   - clusterMetric
   properties:
   - type: OpenAPI
@@ -98,6 +109,8 @@ apis:
   description: The compute API from Apache Ignite — 3 operation(s) for compute.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Compute
+  tags_raw:
   - compute
   properties:
   - type: OpenAPI
@@ -109,6 +122,8 @@ apis:
   description: The deployment API from Apache Ignite — 6 operation(s) for deployment.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Deployment
+  tags_raw:
   - deployment
   properties:
   - type: OpenAPI
@@ -119,7 +134,8 @@ apis:
   name: Apache Ignite nodeConfiguration API
   description: The nodeConfiguration API from Apache Ignite — 2 operation(s) for nodeconfiguration.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
+  tags: []
+  tags_raw:
   - nodeConfiguration
   properties:
   - type: OpenAPI
@@ -130,7 +146,8 @@ apis:
   name: Apache Ignite nodeManagement API
   description: The nodeManagement API from Apache Ignite — 3 operation(s) for nodemanagement.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
+  tags: []
+  tags_raw:
   - nodeManagement
   properties:
   - type: OpenAPI
@@ -141,7 +158,8 @@ apis:
   name: Apache Ignite nodeMetric API
   description: The nodeMetric API from Apache Ignite — 4 operation(s) for nodemetric.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
+  tags: []
+  tags_raw:
   - nodeMetric
   properties:
   - type: OpenAPI
@@ -153,6 +171,8 @@ apis:
   description: The recovery API from Apache Ignite — 12 operation(s) for recovery.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Recovery
+  tags_raw:
   - recovery
   properties:
   - type: OpenAPI
@@ -164,6 +184,8 @@ apis:
   description: The sql API from Apache Ignite — 3 operation(s) for sql.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - SQL
+  tags_raw:
   - sql
   properties:
   - type: OpenAPI
@@ -175,6 +197,8 @@ apis:
   description: The system API from Apache Ignite — 2 operation(s) for system.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - System
+  tags_raw:
   - system
   properties:
   - type: OpenAPI
@@ -186,6 +210,8 @@ apis:
   description: The topology API from Apache Ignite — 2 operation(s) for topology.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Topology
+  tags_raw:
   - topology
   properties:
   - type: OpenAPI
@@ -197,6 +223,8 @@ apis:
   description: The transactions API from Apache Ignite — 2 operation(s) for transactions.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
+  - Transaction
+  tags_raw:
   - transactions
   properties:
   - type: OpenAPI
