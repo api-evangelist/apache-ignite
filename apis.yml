@@ -97,8 +97,7 @@ apis:
   name: Apache Ignite clusterManagement API
   description: The clusterManagement API from Apache Ignite — 2 operation(s) for clustermanagement.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
-  - Cluster Management
+  tags: []
   tags_raw:
   - clusterManagement
   properties:
@@ -224,7 +223,7 @@ apis:
   description: The topology API from Apache Ignite — 2 operation(s) for topology.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
-  - Topology
+  - topology
   tags_raw:
   - topology
   properties:
