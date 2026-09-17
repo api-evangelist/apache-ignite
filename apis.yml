@@ -94,19 +94,6 @@ apis:
     url: openapi/apache-ignite-clusterconfiguration-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-- aid: apache-ignite:apache-ignite-clustermanagement-api
-  name: Apache Ignite clusterManagement API
-  description: The clusterManagement API from Apache Ignite — 2 operation(s) for clustermanagement.
-  humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags:
-  - Cluster Management
-  tags_raw:
-  - clusterManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/apache-ignite-clustermanagement-api-openapi.yml
-  - type: Documentation
-    url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-clustermetric-api
   name: Apache Ignite clusterMetric API
   description: The clusterMetric API from Apache Ignite — 3 operation(s) for clustermetric.
@@ -143,18 +130,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apache-ignite-deployment-api-openapi.yml
-  - type: Documentation
-    url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-- aid: apache-ignite:apache-ignite-nodeconfiguration-api
-  name: Apache Ignite nodeConfiguration API
-  description: The nodeConfiguration API from Apache Ignite — 2 operation(s) for nodeconfiguration.
-  humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
-  tags: []
-  tags_raw:
-  - nodeConfiguration
-  properties:
-  - type: OpenAPI
-    url: openapi/apache-ignite-nodeconfiguration-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-nodemanagement-api
@@ -244,6 +219,28 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apache-ignite-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
+- aid: apache-ignite:apache-ignite-cluster-management-api
+  name: Apache Ignite Cluster Management API
+  description: The Cluster Management API from Apache Ignite — 2 operation(s) for cluster management.
+  humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/clients/java
+  tags:
+  - Cluster Management
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-ignite-cluster-management-api-openapi.yml
+  - type: Documentation
+    url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
+- aid: apache-ignite:apache-ignite-node-configuration-api
+  name: Apache Ignite Node Configuration API
+  description: The Node Configuration API from Apache Ignite — 2 operation(s) for node configuration.
+  humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/clients/java
+  tags:
+  - Node Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-ignite-node-configuration-api-openapi.yml
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 common:
