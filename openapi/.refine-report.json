@@ -1,19 +1,7 @@
 {
   "provider": "apache-ignite",
   "sources": [
-    "apache-ignite-clusterconfiguration-api-openapi.yml",
-    "apache-ignite-clustermanagement-api-openapi.yml",
-    "apache-ignite-clustermetric-api-openapi.yml",
-    "apache-ignite-compute-api-openapi.yml",
-    "apache-ignite-deployment-api-openapi.yml",
-    "apache-ignite-nodeconfiguration-api-openapi.yml",
-    "apache-ignite-nodemanagement-api-openapi.yml",
-    "apache-ignite-nodemetric-api-openapi.yml",
-    "apache-ignite-recovery-api-openapi.yml",
-    "apache-ignite-sql-api-openapi.yml",
-    "apache-ignite-system-api-openapi.yml",
-    "apache-ignite-topology-api-openapi.yml",
-    "apache-ignite-transactions-api-openapi.yml"
+    "_original/apache-ignite-rest-api.yaml"
   ],
   "outputs": [
     "apache-ignite-clusterconfiguration-api-openapi.yml",
@@ -30,9 +18,43 @@
     "apache-ignite-topology-api-openapi.yml",
     "apache-ignite-transactions-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apache-ignite-rest-api.yaml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apache-ignite-rest-api.yaml: declared missing tag: clusterConfiguration",
+    "apache-ignite-rest-api.yaml: declared missing tag: clusterManagement",
+    "apache-ignite-rest-api.yaml: declared missing tag: clusterMetric",
+    "apache-ignite-rest-api.yaml: declared missing tag: compute",
+    "apache-ignite-rest-api.yaml: declared missing tag: deployment",
+    "apache-ignite-rest-api.yaml: declared missing tag: nodeConfiguration",
+    "apache-ignite-rest-api.yaml: declared missing tag: nodeManagement",
+    "apache-ignite-rest-api.yaml: declared missing tag: nodeMetric",
+    "apache-ignite-rest-api.yaml: declared missing tag: recovery",
+    "apache-ignite-rest-api.yaml: declared missing tag: sql",
+    "apache-ignite-rest-api.yaml: declared missing tag: system",
+    "apache-ignite-rest-api.yaml: declared missing tag: topology",
+    "apache-ignite-rest-api.yaml: declared missing tag: transactions",
+    "superseded outputs removed: apache-ignite-cluster-management-api-openapi.yml, apache-ignite-node-configuration-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 15 total)"
+  ],
+  "skipped": [
+    "apache-ignite-cluster-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-clusterconfiguration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-clustermetric-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-compute-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-deployment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-node-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-nodemanagement-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-nodemetric-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-recovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-sql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-topology-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apache-ignite-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

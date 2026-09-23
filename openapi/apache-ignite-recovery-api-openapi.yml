@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration recovery API
+  title: Apache Ignite REST module Recovery API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: recovery
+- name: Recovery
 paths:
   /management/v1/recovery/cluster/migrate:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Migrates nodes from old cluster to new (repaired) cluster.
       operationId: migrate
       requestBody:
@@ -55,10 +55,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Migrate
+      x-summary-source: derived
   /management/v1/recovery/cluster/reset:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Initiates cluster reset to repair CMG/Metastorage group/both.
       operationId: resetCluster
       requestBody:
@@ -92,10 +94,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Reset cluster
+      x-summary-source: derived
   /management/v1/recovery/partitions/reset:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Updates assignments of partitions in a forced manner, allowing for the recovery of raft groups with lost majorities.
       operationId: resetPartitions
       requestBody:
@@ -130,10 +134,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Reset partitions
+      x-summary-source: derived
   /management/v1/recovery/partitions/restart:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Restarts replica service and raft group of passed partitions.
       operationId: restartPartitions
       requestBody:
@@ -169,10 +175,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Restart partitions
+      x-summary-source: derived
   /management/v1/recovery/partitions/restartWithCleanup:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Restarts replica service and raft group of passed partitions with cleaning up of the storage.
       operationId: restartPartitionsWithCleanup
       requestBody:
@@ -208,28 +216,32 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Restart partitions with cleanup
+      x-summary-source: derived
   /management/v1/recovery/state/global:
     get:
       tags:
-      - recovery
+      - Recovery
       description: Returns global partition states.
       operationId: getGlobalPartitionStates
       parameters:
       - name: zoneNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: partitionIds
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: IDs of partitions to get states of. All partitions if empty.
-          nullable: true
           items:
             type: integer
             format: int32
@@ -262,37 +274,42 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Get global partition states
+      x-summary-source: derived
   /management/v1/recovery/state/local:
     get:
       tags:
-      - recovery
+      - Recovery
       description: Returns local partition states.
       operationId: getLocalPartitionStates
       parameters:
       - name: zoneNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: nodeNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying nodes to get partition states from. Case-sensitive, all nodes if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: partitionIds
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: IDs of partitions to get states. All partitions if empty.
-          nullable: true
           items:
             type: integer
             format: int32
@@ -325,10 +342,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Get local partition states
+      x-summary-source: derived
   /management/v1/recovery/zone/partitions/reset:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Updates assignments of zone's partitions in a forced manner, allowing for the recovery of raft groups with lost majorities.
       operationId: resetZonePartitions
       requestBody:
@@ -362,10 +381,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Reset zone partitions
+      x-summary-source: derived
   /management/v1/recovery/zone/partitions/restart:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Restarts replica service and raft group of passed zone partitions.
       operationId: restartZonePartitions
       requestBody:
@@ -400,10 +421,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Restart zone partitions
+      x-summary-source: derived
   /management/v1/recovery/zone/partitions/restartWithCleanup:
     post:
       tags:
-      - recovery
+      - Recovery
       description: Restarts replica service and raft group of passed zone partitions with cleaning up of the storage.
       operationId: restartZonePartitionsWithCleanup
       requestBody:
@@ -438,28 +461,32 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Restart zone partitions with cleanup
+      x-summary-source: derived
   /management/v1/recovery/zone/state/global:
     get:
       tags:
-      - recovery
+      - Recovery
       description: Returns global zone partition states.
       operationId: getZoneGlobalPartitionStates
       parameters:
       - name: zoneNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: partitionIds
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: IDs of partitions to get states of. All partitions if empty.
-          nullable: true
           items:
             type: integer
             format: int32
@@ -492,37 +519,42 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Get zone global partition states
+      x-summary-source: derived
   /management/v1/recovery/zone/state/local:
     get:
       tags:
-      - recovery
+      - Recovery
       description: Returns local zone partition states.
       operationId: getZoneLocalPartitionStates
       parameters:
       - name: zoneNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying zones to get partition states from. Case-sensitive, all zones if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: nodeNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Names specifying nodes to get partition states from. Case-sensitive, all nodes if empty.
-          nullable: true
           items:
             type: string
         example: []
       - name: partitionIds
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: IDs of partitions to get states. All partitions if empty.
-          nullable: true
           items:
             type: integer
             format: int32
@@ -555,6 +587,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Get zone local partition states
+      x-summary-source: derived
 components:
   schemas:
     LocalPartitionStateResponse:
@@ -589,70 +623,6 @@ components:
           type: integer
           format: int64
       description: Information about local partition state.
-    ResetZonePartitionsRequest:
-      type: object
-      properties:
-        zoneName:
-          type: string
-          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to reset. All if empty.
-          items:
-            type: integer
-            format: int32
-      description: Reset zone partitions configuration.
-    GlobalZonePartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
-      description: Information about global zone partition states.
-    GlobalPartitionStateResponse:
-      required:
-      - partitionId
-      - schemaName
-      - state
-      - tableId
-      - tableName
-      - zoneName
-      type: object
-      properties:
-        partitionId:
-          type: integer
-          format: int32
-        zoneName:
-          type: string
-        tableId:
-          type: integer
-          format: int32
-        schemaName:
-          type: string
-        tableName:
-          type: string
-        state:
-          type: string
-      description: Information about global partition state.
-    RestartZonePartitionsRequest:
-      type: object
-      properties:
-        nodeNames:
-          type: array
-          description: Names specifying nodes to restart zone partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
-          items:
-            type: string
-        zoneName:
-          type: string
-          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
-          items:
-            type: integer
-            format: int32
-      description: restart partitions configuration.
     GlobalZonePartitionStateResponse:
       required:
       - partitionId
@@ -668,92 +638,6 @@ components:
         state:
           type: string
       description: Information about global zone partition state.
-    ResetPartitionsRequest:
-      type: object
-      properties:
-        zoneName:
-          type: string
-          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to reset. All if empty.
-          items:
-            type: integer
-            format: int32
-        tableName:
-          type: string
-          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
-      description: Reset partitions configuration.
-    ResetClusterRequest:
-      type: object
-      properties:
-        cmgNodeNames:
-          type: array
-          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
-          nullable: true
-          items:
-            type: string
-        metastorageReplicationFactor:
-          type: integer
-          description: Number of nodes in the voting member set of the Metastorage RAFT group.
-          format: int32
-          nullable: true
-      description: Reset cluster.
-    MigrateRequest:
-      type: object
-      properties:
-        cmgNodes:
-          type: array
-          description: Names of the CMG node names.
-          items:
-            type: string
-        metaStorageNodes:
-          type: array
-          description: Names of the Metastorage node names.
-          items:
-            type: string
-        version:
-          type: string
-          description: Ignite version.
-        clusterId:
-          type: string
-          description: ID of the cluster.
-          format: uuid
-        clusterName:
-          type: string
-          description: Name of the cluster.
-        formerClusterIds:
-          type: array
-          description: IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.
-          nullable: true
-          items:
-            type: string
-            format: uuid
-      description: Migrate nodes to new cluster.
-    GlobalPartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalPartitionStateResponse'
-      description: Information about global partition states.
-    LocalZonePartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
-      description: Information about local zone partition states.
-    LocalPartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalPartitionStateResponse'
-      description: Information about local partition states.
     Problem:
       type: object
       properties:
@@ -786,27 +670,128 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    RestartPartitionsRequest:
+    GlobalPartitionStateResponse:
+      required:
+      - partitionId
+      - schemaName
+      - state
+      - tableId
+      - tableName
+      - zoneName
       type: object
       properties:
-        nodeNames:
-          type: array
-          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
-          items:
-            type: string
+        partitionId:
+          type: integer
+          format: int32
         zoneName:
           type: string
-          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        tableId:
+          type: integer
+          format: int32
+        schemaName:
+          type: string
+        tableName:
+          type: string
+        state:
+          type: string
+      description: Information about global partition state.
+    ResetPartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
         partitionIds:
           type: array
-          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          description: IDs of partitions to reset. All if empty.
           items:
             type: integer
             format: int32
         tableName:
           type: string
-          description: Fully-qualified name of the table to restart partitions of.
-      description: restart partitions configuration.
+          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
+      description: Reset partitions configuration.
+    LocalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
+      description: Information about local zone partition states.
+    MigrateRequest:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: Names of the CMG node names.
+          items:
+            type: string
+        metaStorageNodes:
+          type: array
+          description: Names of the Metastorage node names.
+          items:
+            type: string
+        version:
+          type: string
+          description: Ignite version.
+        clusterId:
+          type: string
+          description: ID of the cluster.
+          format: uuid
+        clusterName:
+          type: string
+          description: Name of the cluster.
+        formerClusterIds:
+          type:
+          - array
+          - 'null'
+          description: IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.
+          items:
+            type: string
+            format: uuid
+      description: Migrate nodes to new cluster.
+    LocalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalPartitionStateResponse'
+      description: Information about local partition states.
+    GlobalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
+      description: Information about global zone partition states.
+    GlobalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalPartitionStateResponse'
+      description: Information about global partition states.
+    ResetClusterRequest:
+      type: object
+      properties:
+        cmgNodeNames:
+          type:
+          - array
+          - 'null'
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type:
+          - integer
+          - 'null'
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+      description: Reset cluster.
     LocalZonePartitionStateResponse:
       required:
       - estimatedRows
@@ -839,6 +824,58 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
+    RestartZonePartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart zone partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+      description: restart partitions configuration.
+    RestartPartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to restart partitions of.
+      description: restart partitions configuration.
+    ResetZonePartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+      description: Reset zone partitions configuration.
   securitySchemes:
     basicAuth:
       type: http

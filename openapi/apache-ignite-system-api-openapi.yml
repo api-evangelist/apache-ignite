@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration system API
+  title: Apache Ignite REST module System API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: system
+- name: System
 paths:
   /management/v1/recovery/cluster/migrate:
     post:
       tags:
-      - system
+      - System
       description: Migrates nodes from old cluster to new (repaired) cluster.
       operationId: migrate
       requestBody:
@@ -55,10 +55,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Migrate
+      x-summary-source: derived
   /management/v1/recovery/cluster/reset:
     post:
       tags:
-      - system
+      - System
       description: Initiates cluster reset to repair CMG/Metastorage group/both.
       operationId: resetCluster
       requestBody:
@@ -92,8 +94,59 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Reset cluster
+      x-summary-source: derived
 components:
   schemas:
+    MigrateRequest:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: Names of the CMG node names.
+          items:
+            type: string
+        metaStorageNodes:
+          type: array
+          description: Names of the Metastorage node names.
+          items:
+            type: string
+        version:
+          type: string
+          description: Ignite version.
+        clusterId:
+          type: string
+          description: ID of the cluster.
+          format: uuid
+        clusterName:
+          type: string
+          description: Name of the cluster.
+        formerClusterIds:
+          type:
+          - array
+          - 'null'
+          description: IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.
+          items:
+            type: string
+            format: uuid
+      description: Migrate nodes to new cluster.
+    ResetClusterRequest:
+      type: object
+      properties:
+        cmgNodeNames:
+          type:
+          - array
+          - 'null'
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type:
+          - integer
+          - 'null'
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+      description: Reset cluster.
     Problem:
       type: object
       properties:
@@ -126,37 +179,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    MigrateRequest:
-      type: object
-      properties:
-        cmgNodes:
-          type: array
-          description: Names of the CMG node names.
-          items:
-            type: string
-        metaStorageNodes:
-          type: array
-          description: Names of the Metastorage node names.
-          items:
-            type: string
-        version:
-          type: string
-          description: Ignite version.
-        clusterId:
-          type: string
-          description: ID of the cluster.
-          format: uuid
-        clusterName:
-          type: string
-          description: Name of the cluster.
-        formerClusterIds:
-          type: array
-          description: IDs the cluster had before. If CMG/Metastorage group were never repaired, this is null.
-          nullable: true
-          items:
-            type: string
-            format: uuid
-      description: Migrate nodes to new cluster.
     InvalidParam:
       type: object
       properties:
@@ -167,21 +189,6 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
-    ResetClusterRequest:
-      type: object
-      properties:
-        cmgNodeNames:
-          type: array
-          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
-          nullable: true
-          items:
-            type: string
-        metastorageReplicationFactor:
-          type: integer
-          description: Number of nodes in the voting member set of the Metastorage RAFT group.
-          format: int32
-          nullable: true
-      description: Reset cluster.
   securitySchemes:
     basicAuth:
       type: http

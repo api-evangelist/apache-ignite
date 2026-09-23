@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration nodeConfiguration API
+  title: Apache Ignite REST module Node Configuration API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: nodeConfiguration
+- name: Node Configuration
 paths:
   /management/v1/configuration/node:
     get:
       tags:
-      - nodeConfiguration
+      - Node Configuration
       summary: Apache Ignite Get Node Configuration
       description: Gets node configuration in HOCON format.
       operationId: getNodeConfiguration
@@ -45,7 +45,7 @@ paths:
         dispatcher: FALLBACK
     patch:
       tags:
-      - nodeConfiguration
+      - Node Configuration
       summary: Apache Ignite Update Node Configuration
       description: Updates node configuration. New configuration should be provided in HOCON format.
       operationId: updateNodeConfiguration
@@ -89,7 +89,7 @@ paths:
   /management/v1/configuration/node/{path}:
     get:
       tags:
-      - nodeConfiguration
+      - Node Configuration
       summary: Apache Ignite Get Configuration Represented by Path
       description: Gets a configuration of a specific node, in HOCON format.
       operationId: getNodeConfigurationByPath

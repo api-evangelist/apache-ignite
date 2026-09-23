@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration clusterManagement API
+  title: Apache Ignite REST module Cluster Management API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: clusterManagement
+- name: Cluster Management
 paths:
   /management/v1/cluster/init:
     post:
       tags:
-      - clusterManagement
+      - Cluster Management
       summary: Apache Ignite Initialize Cluster
       description: Initialize a new cluster.
       operationId: init
@@ -57,7 +57,7 @@ paths:
   /management/v1/cluster/state:
     get:
       tags:
-      - clusterManagement
+      - Cluster Management
       summary: Apache Ignite Get Cluster State
       description: Returns current cluster status.
       operationId: clusterState
@@ -95,45 +95,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ClusterState:
-      type: object
-      properties:
-        cmgNodes:
-          type: array
-          description: List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.
-          items:
-            type: string
-        msNodes:
-          type: array
-          description: List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.
-          items:
-            type: string
-        igniteVersion:
-          type: string
-          description: Version of Apache Ignite that the cluster was created on.
-        clusterTag:
-          allOf:
-          - $ref: '#/components/schemas/ClusterTag'
-          - description: Unique tag that identifies the cluster.
-        formerClusterIds:
-          type: array
-          description: IDs the cluster had before.
-          nullable: true
-          items:
-            type: string
-            format: uuid
-      description: Information about current cluster state.
-    ClusterTag:
-      type: object
-      properties:
-        clusterId:
-          type: string
-          description: Unique cluster UUID. Generated automatically.
-          format: uuid
-        clusterName:
-          type: string
-          description: Unique cluster name.
-      description: Unique tag that identifies the cluster.
     Problem:
       type: object
       properties:
@@ -166,6 +127,17 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    ClusterTag:
+      type: object
+      properties:
+        clusterId:
+          type: string
+          description: Unique cluster UUID. Generated automatically.
+          format: uuid
+        clusterName:
+          type: string
+          description: Unique cluster name.
+      description: Unique tag that identifies the cluster.
     InitCommand:
       type: object
       properties:
@@ -196,6 +168,35 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
+    ClusterState:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.
+          items:
+            type: string
+        msNodes:
+          type: array
+          description: List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.
+          items:
+            type: string
+        igniteVersion:
+          type: string
+          description: Version of Apache Ignite that the cluster was created on.
+        clusterTag:
+          allOf:
+          - $ref: '#/components/schemas/ClusterTag'
+          - description: Unique tag that identifies the cluster.
+        formerClusterIds:
+          type:
+          - array
+          - 'null'
+          description: IDs the cluster had before.
+          items:
+            type: string
+            format: uuid
+      description: Information about current cluster state.
   securitySchemes:
     basicAuth:
       type: http

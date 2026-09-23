@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration compute API
+  title: Apache Ignite REST module Compute API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: compute
+- name: Compute
 paths:
   /management/v1/compute/jobs:
     get:
       tags:
-      - compute
+      - Compute
       summary: Apache Ignite Retrieve All Job States
       description: Fetches the current states of all compute jobs.
       operationId: jobStates
@@ -41,7 +41,7 @@ paths:
   /management/v1/compute/jobs/{jobId}:
     get:
       tags:
-      - compute
+      - Compute
       summary: Apache Ignite Retrieve Job State
       description: Fetches the current state of a specific compute job identified by jobId.
       operationId: jobState
@@ -96,7 +96,7 @@ paths:
         dispatcher: FALLBACK
     delete:
       tags:
-      - compute
+      - Compute
       summary: Apache Ignite Cancel Job
       description: Cancels a specific compute job identified by jobId.
       operationId: cancelJob
@@ -164,7 +164,7 @@ paths:
   /management/v1/compute/jobs/{jobId}/priority:
     put:
       tags:
-      - compute
+      - Compute
       summary: Apache Ignite Update Job Priority
       description: Updates the priority of a specific compute job identified by jobId.
       operationId: updatePriority
@@ -244,47 +244,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JobStatus:
-      type: string
-      description: Job status.
-      enum:
-      - QUEUED
-      - EXECUTING
-      - FAILED
-      - COMPLETED
-      - CANCELING
-      - CANCELED
-    JobState:
-      required:
-      - createTime
-      - id
-      - status
-      type: object
-      properties:
-        id:
-          type: string
-          description: Job ID.
-          format: uuid
-        status:
-          description: Job status.
-          allOf:
-          - $ref: '#/components/schemas/JobStatus'
-          - {}
-        createTime:
-          type: string
-          description: Job create time.
-          format: date-time
-        startTime:
-          type: string
-          description: Job start time.
-          format: date-time
-          nullable: true
-        finishTime:
-          type: string
-          description: Job finish time.
-          format: date-time
-          nullable: true
-      description: Rest representation of org.apache.ignite.compute.JobState.
     Problem:
       type: object
       properties:
@@ -317,16 +276,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
     UpdateJobPriorityBody:
       required:
       - priority
@@ -337,6 +286,59 @@ components:
           description: Priority.
           format: int32
       description: DTO of update job priority request body.
+    JobStatus:
+      type: string
+      description: Job status.
+      enum:
+      - QUEUED
+      - EXECUTING
+      - FAILED
+      - COMPLETED
+      - CANCELING
+      - CANCELED
+    JobState:
+      required:
+      - createTime
+      - id
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job ID.
+          format: uuid
+        status:
+          description: Job status.
+          allOf:
+          - $ref: '#/components/schemas/JobStatus'
+          - {}
+        createTime:
+          type: string
+          description: Job create time.
+          format: date-time
+        startTime:
+          type:
+          - string
+          - 'null'
+          description: Job start time.
+          format: date-time
+        finishTime:
+          type:
+          - string
+          - 'null'
+          description: Job finish time.
+          format: date-time
+      description: Rest representation of org.apache.ignite.compute.JobState.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
   securitySchemes:
     basicAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration sql API
+  title: Apache Ignite REST module Sql API
   contact:
     email: user@ignite.apache.org
   license:
@@ -18,16 +18,17 @@ paths:
     get:
       tags:
       - sql
-      summary: Apache Ignite Invalidates SQL Planner Cache.
+      summary: Apache Ignite Invalidates SQL Planner Cache
       description: Invalidates SQL planner cache records on node that related to provided table names.
       operationId: clearCache
       parameters:
       - name: tableNames
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: SQL query plans, which are related to given tables, will be evicted from cache. Case-sensitive, cache will be reset if empty.
-          nullable: true
           items:
             type: string
         example: []
@@ -41,7 +42,7 @@ paths:
     get:
       tags:
       - sql
-      summary: Apache Ignite Retrieve All Running Sql Queries.
+      summary: Apache Ignite Retrieve All Running Sql Queries
       description: Fetches all running sql queries.
       operationId: queries
       responses:
@@ -65,7 +66,7 @@ paths:
     get:
       tags:
       - sql
-      summary: Apache Ignite Retrieve Sql Query.
+      summary: Apache Ignite Retrieve Sql Query
       description: Fetches the current state of a specific sql query.
       operationId: query
       parameters:
@@ -122,7 +123,7 @@ paths:
     delete:
       tags:
       - sql
-      summary: Apache Ignite Kill Sql Query.
+      summary: Apache Ignite Kill Sql Query
       description: Kills a specific sql query identified by query id.
       operationId: killQuery
       parameters:
@@ -188,6 +189,41 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SqlQuery:
+      required:
+      - id
+      - node
+      - phase
+      - schema
+      - sql
+      - startTime
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Sql query ID.
+          format: uuid
+        node:
+          type: string
+          description: Initiator node.
+        phase:
+          type: string
+          description: Phase.
+        type:
+          type: string
+          description: Type.
+        schema:
+          type: string
+          description: Schema.
+        sql:
+          type: string
+          description: SQL statement.
+        startTime:
+          type: string
+          description: Start time.
+          format: date-time
+      description: Rest representation of sql query.
     Problem:
       type: object
       properties:
@@ -230,41 +266,6 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
-    SqlQuery:
-      required:
-      - id
-      - node
-      - phase
-      - schema
-      - sql
-      - startTime
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Sql query ID.
-          format: uuid
-        node:
-          type: string
-          description: Initiator node.
-        phase:
-          type: string
-          description: Phase.
-        type:
-          type: string
-          description: Type.
-        schema:
-          type: string
-          description: Schema.
-        sql:
-          type: string
-          description: SQL statement.
-        startTime:
-          type: string
-          description: Start time.
-          format: date-time
-      description: Rest representation of sql query.
   securitySchemes:
     basicAuth:
       type: http

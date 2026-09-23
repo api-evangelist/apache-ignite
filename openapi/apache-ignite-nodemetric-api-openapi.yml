@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration nodeMetric API
+  title: Apache Ignite REST module Node Metric API
   contact:
     email: user@ignite.apache.org
   license:
@@ -138,30 +138,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Metric:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Metric name.
-        desc:
-          type: string
-          description: Metric description.
-          nullable: true
-      description: Metric representation.
-    MetricSource:
-      required:
-      - enabled
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Metric source name.
-        enabled:
-          type: boolean
-          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
-      description: A list of metric sources provided by modules.
     Problem:
       type: object
       properties:
@@ -194,6 +170,41 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    MetricSource:
+      required:
+      - enabled
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric source name.
+        enabled:
+          type: boolean
+          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
+      description: A list of metric sources provided by modules.
+    Metric:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric name.
+        desc:
+          type:
+          - string
+          - 'null'
+          description: Metric description.
+      description: Metric representation.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
     MetricSet:
       required:
       - metrics
@@ -209,16 +220,6 @@ components:
           items:
             $ref: '#/components/schemas/Metric'
       description: Metrics set representation.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
   securitySchemes:
     basicAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration deployment API
+  title: Apache Ignite REST module Deployment API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: deployment
+- name: Deployment
 paths:
   /management/v1/deployment/cluster/units:
     get:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Get Cluster Unit Statuses
       description: Cluster unit statuses.
       operationId: listClusterStatuses
@@ -25,9 +25,10 @@ paths:
       - name: statuses
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Deployment status filter.
-          nullable: true
           items:
             $ref: '#/components/schemas/DeploymentStatus'
         example: []
@@ -57,7 +58,7 @@ paths:
   /management/v1/deployment/cluster/units/{unitId}:
     get:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Get Specific Cluster Unit Statuses
       description: Cluster unit statuses by unit.
       operationId: listClusterStatusesByUnit
@@ -72,16 +73,18 @@ paths:
       - name: version
         in: query
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Unit version filter.
-          nullable: true
         example: example-value
       - name: statuses
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Deployment status filter.
-          nullable: true
           items:
             $ref: '#/components/schemas/DeploymentStatus'
         example: []
@@ -111,7 +114,7 @@ paths:
   /management/v1/deployment/node/units:
     get:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Get Node Unit Statuses
       description: Returns a list of unit statuses per node.
       operationId: listNodeStatuses
@@ -119,9 +122,10 @@ paths:
       - name: statuses
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Deployment status filter.
-          nullable: true
           items:
             $ref: '#/components/schemas/DeploymentStatus'
         example: []
@@ -151,7 +155,7 @@ paths:
   /management/v1/deployment/node/units/{unitId}:
     get:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Get Specific Node Unit Statuses
       description: Returns a list of node unit statuses by unit.
       operationId: listNodeStatusesByUnit
@@ -166,16 +170,18 @@ paths:
       - name: version
         in: query
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Unit version filter.
-          nullable: true
         example: example-value
       - name: statuses
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Deployment status filter.
-          nullable: true
           items:
             $ref: '#/components/schemas/DeploymentStatus'
         example: []
@@ -205,8 +211,8 @@ paths:
   /management/v1/deployment/units/zip/{unitId}/{unitVersion}:
     post:
       tags:
-      - deployment
-      summary: Apache Ignite Deploy Unit with Folders Structure in Zip.
+      - Deployment
+      summary: Apache Ignite Deploy Unit with Folders Structure in Zip
       description: Deploys provided unit in zip file to the cluster with folders structure.
       operationId: deployZipUnit
       parameters:
@@ -227,7 +233,6 @@ paths:
       - name: deployMode
         in: query
         schema:
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/deployMode'
           - description: ALL or MAJORITY.
@@ -235,9 +240,10 @@ paths:
       - name: initialNodes
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: List of node identifiers to deploy to.
-          nullable: true
           items:
             type: string
         example: []
@@ -293,7 +299,7 @@ paths:
   /management/v1/deployment/units/{unitId}/{unitVersion}:
     post:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Deploy Unit
       description: Deploys provided unit to the cluster.
       operationId: deployUnit
@@ -315,7 +321,6 @@ paths:
       - name: deployMode
         in: query
         schema:
-          nullable: true
           allOf:
           - $ref: '#/components/schemas/deployMode'
           - description: ALL or MAJORITY.
@@ -323,9 +328,10 @@ paths:
       - name: initialNodes
         in: query
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           description: List of node identifiers to deploy to.
-          nullable: true
           items:
             type: string
         example: []
@@ -374,7 +380,7 @@ paths:
         dispatcher: FALLBACK
     delete:
       tags:
-      - deployment
+      - Deployment
       summary: Apache Ignite Undeploy Unit
       description: Undeploys the unit with provided unitId and unitVersion.
       operationId: undeployUnit
@@ -451,20 +457,6 @@ components:
           - $ref: '#/components/schemas/DeploymentStatus'
           - description: Unit status.
       description: Unit version and status.
-    DeploymentStatus:
-      type: string
-      description: Status of deployment process.
-      enum:
-      - UPLOADING
-      - DEPLOYED
-      - OBSOLETE
-      - REMOVING
-    deployMode:
-      type: string
-      description: Initial set of nodes to deploy.
-      enum:
-      - MAJORITY
-      - ALL
     Problem:
       type: object
       properties:
@@ -497,6 +489,20 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    deployMode:
+      type: string
+      description: Initial set of nodes to deploy.
+      enum:
+      - MAJORITY
+      - ALL
+    DeploymentStatus:
+      type: string
+      description: Status of deployment process.
+      enum:
+      - UPLOADING
+      - DEPLOYED
+      - OBSOLETE
+      - REMOVING
     InvalidParam:
       type: object
       properties:

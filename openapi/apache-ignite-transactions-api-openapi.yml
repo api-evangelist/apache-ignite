@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Apache Ignite REST module clusterConfiguration transactions API
+  title: Apache Ignite REST module Transactions API
   contact:
     email: user@ignite.apache.org
   license:
@@ -12,12 +12,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: transactions
+- name: Transactions
 paths:
   /management/v1/transactions:
     get:
       tags:
-      - transactions
+      - Transactions
       summary: Apache Ignite Retrieve All in Progress Transactions
       description: Fetches all in progress transactions.
       operationId: transactions
@@ -41,7 +41,7 @@ paths:
   /management/v1/transactions/{transactionId}:
     get:
       tags:
-      - transactions
+      - Transactions
       summary: Apache Ignite Retrieve Transaction State
       description: Fetches the current state of a specific transaction identified by transactionId.
       operationId: transaction
@@ -97,8 +97,8 @@ paths:
         dispatcher: FALLBACK
     delete:
       tags:
-      - transactions
-      summary: Apache Ignite Kill Transaction.
+      - Transactions
+      summary: Apache Ignite Kill Transaction
       description: Kills a specific transaction identified by transactionId.
       operationId: killTransaction
       parameters:
@@ -164,6 +164,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Transaction:
+      required:
+      - id
+      - node
+      - priority
+      - startTime
+      - state
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Transaction ID.
+          format: uuid
+        node:
+          type: string
+          description: Coordinator node.
+        state:
+          type: string
+          description: State.
+        type:
+          type: string
+          description: Type.
+        priority:
+          type: string
+          description: Priority.
+        startTime:
+          type: string
+          description: Start time.
+          format: date-time
+      description: Rest representation of transaction.
     Problem:
       type: object
       properties:
@@ -196,37 +227,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    Transaction:
-      required:
-      - id
-      - node
-      - priority
-      - startTime
-      - state
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Transaction ID.
-          format: uuid
-        node:
-          type: string
-          description: Coordinator node.
-        state:
-          type: string
-          description: State.
-        type:
-          type: string
-          description: Type.
-        priority:
-          type: string
-          description: Priority.
-        startTime:
-          type: string
-          description: Start time.
-          format: date-time
-      description: Rest representation of transaction.
     InvalidParam:
       type: object
       properties:
