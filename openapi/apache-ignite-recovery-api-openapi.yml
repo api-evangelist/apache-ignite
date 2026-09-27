@@ -623,6 +623,14 @@ components:
           type: integer
           format: int64
       description: Information about local partition state.
+    LocalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
+      description: Information about local zone partition states.
     GlobalZonePartitionStateResponse:
       required:
       - partitionId
@@ -638,6 +646,27 @@ components:
         state:
           type: string
       description: Information about global zone partition state.
+    RestartPartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to restart partitions of.
+      description: restart partitions configuration.
     Problem:
       type: object
       properties:
@@ -695,30 +724,14 @@ components:
         state:
           type: string
       description: Information about global partition state.
-    ResetPartitionsRequest:
-      type: object
-      properties:
-        zoneName:
-          type: string
-          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to reset. All if empty.
-          items:
-            type: integer
-            format: int32
-        tableName:
-          type: string
-          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
-      description: Reset partitions configuration.
-    LocalZonePartitionStatesResponse:
+    GlobalZonePartitionStatesResponse:
       type: object
       properties:
         states:
           type: array
           items:
-            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
-      description: Information about local zone partition states.
+            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
+      description: Information about global zone partition states.
     MigrateRequest:
       type: object
       properties:
@@ -759,39 +772,16 @@ components:
           items:
             $ref: '#/components/schemas/LocalPartitionStateResponse'
       description: Information about local partition states.
-    GlobalZonePartitionStatesResponse:
+    InvalidParam:
       type: object
       properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
-      description: Information about global zone partition states.
-    GlobalPartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalPartitionStateResponse'
-      description: Information about global partition states.
-    ResetClusterRequest:
-      type: object
-      properties:
-        cmgNodeNames:
-          type:
-          - array
-          - 'null'
-          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
-          items:
-            type: string
-        metastorageReplicationFactor:
-          type:
-          - integer
-          - 'null'
-          description: Number of nodes in the voting member set of the Metastorage RAFT group.
-          format: int32
-      description: Reset cluster.
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
     LocalZonePartitionStateResponse:
       required:
       - estimatedRows
@@ -814,16 +804,60 @@ components:
           type: integer
           format: int64
       description: Information about local zone partition state.
-    InvalidParam:
+    ResetClusterRequest:
       type: object
       properties:
-        name:
+        cmgNodeNames:
+          type:
+          - array
+          - 'null'
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type:
+          - integer
+          - 'null'
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+      description: Reset cluster.
+    GlobalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalPartitionStateResponse'
+      description: Information about global partition states.
+    ResetPartitionsRequest:
+      type: object
+      properties:
+        zoneName:
           type: string
-          description: Parameter name.
-        reason:
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+        tableName:
           type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
+          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
+      description: Reset partitions configuration.
+    ResetZonePartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+      description: Reset zone partitions configuration.
     RestartZonePartitionsRequest:
       type: object
       properties:
@@ -842,40 +876,6 @@ components:
             type: integer
             format: int32
       description: restart partitions configuration.
-    RestartPartitionsRequest:
-      type: object
-      properties:
-        nodeNames:
-          type: array
-          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
-          items:
-            type: string
-        zoneName:
-          type: string
-          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
-          items:
-            type: integer
-            format: int32
-        tableName:
-          type: string
-          description: Fully-qualified name of the table to restart partitions of.
-      description: restart partitions configuration.
-    ResetZonePartitionsRequest:
-      type: object
-      properties:
-        zoneName:
-          type: string
-          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to reset. All if empty.
-          items:
-            type: integer
-            format: int32
-      description: Reset zone partitions configuration.
   securitySchemes:
     basicAuth:
       type: http

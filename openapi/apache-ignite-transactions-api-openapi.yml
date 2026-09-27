@@ -195,6 +195,16 @@ components:
           description: Start time.
           format: date-time
       description: Rest representation of transaction.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
     Problem:
       type: object
       properties:
@@ -227,16 +237,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
   securitySchemes:
     basicAuth:
       type: http

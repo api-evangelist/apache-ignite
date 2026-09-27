@@ -123,6 +123,29 @@ components:
           items:
             $ref: '#/components/schemas/MetricSource'
       description: A list of metric sources for a node.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    MetricSource:
+      required:
+      - enabled
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric source name.
+        enabled:
+          type: boolean
+          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
+      description: A list of metric sources provided by modules.
     Problem:
       type: object
       properties:
@@ -155,29 +178,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    MetricSource:
-      required:
-      - enabled
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Metric source name.
-        enabled:
-          type: boolean
-          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
-      description: A list of metric sources provided by modules.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
   securitySchemes:
     basicAuth:
       type: http

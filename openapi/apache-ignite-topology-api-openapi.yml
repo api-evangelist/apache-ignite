@@ -140,6 +140,16 @@ components:
           description: The HTTPS port exposed to REST API.
           format: int32
       description: Node metadata information.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
     ClusterNode:
       type: object
       properties:
@@ -159,16 +169,6 @@ components:
           - $ref: '#/components/schemas/NodeMetadata'
           - description: Node metadata information.
       description: Information about the cluster node.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
   securitySchemes:
     basicAuth:
       type: http

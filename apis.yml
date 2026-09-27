@@ -43,7 +43,7 @@ tags:
 - Compute Grid
 - Distributed Database
 - In-Memory
-- Open-Source
+- Open Source
 - SQL
 tags_raw:
 - Caching
@@ -52,6 +52,7 @@ tags_raw:
 - In-Memory
 - Open Source
 - SQL
+- Open-Source
 created: '2026-03-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-ignite/refs/heads/main/apis.yml
@@ -85,7 +86,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/clients/dotnet
 - aid: apache-ignite:apache-ignite-clusterconfiguration-api
-  name: Apache Ignite clusterConfiguration API
+  name: Apache Ignite Cluster Configuration API
   description: >-
     The clusterConfiguration API from Apache Ignite — 2 operation(s) for clusterconfiguration.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
@@ -98,7 +99,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-clustermetric-api
-  name: Apache Ignite clusterMetric API
+  name: Apache Ignite Cluster Metric API
   description: The clusterMetric API from Apache Ignite — 3 operation(s) for clustermetric.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags: []
@@ -110,7 +111,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-compute-api
-  name: Apache Ignite compute API
+  name: Apache Ignite Compute API
   description: The compute API from Apache Ignite — 3 operation(s) for compute.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -123,7 +124,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-deployment-api
-  name: Apache Ignite deployment API
+  name: Apache Ignite Deployment API
   description: The deployment API from Apache Ignite — 6 operation(s) for deployment.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -136,7 +137,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-nodemanagement-api
-  name: Apache Ignite nodeManagement API
+  name: Apache Ignite Node Management API
   description: The nodeManagement API from Apache Ignite — 3 operation(s) for nodemanagement.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags: []
@@ -148,7 +149,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-nodemetric-api
-  name: Apache Ignite nodeMetric API
+  name: Apache Ignite Node Metric API
   description: The nodeMetric API from Apache Ignite — 4 operation(s) for nodemetric.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags: []
@@ -160,7 +161,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-recovery-api
-  name: Apache Ignite recovery API
+  name: Apache Ignite Recovery API
   description: The recovery API from Apache Ignite — 12 operation(s) for recovery.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -173,7 +174,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-sql-api
-  name: Apache Ignite sql API
+  name: Apache Ignite Sql API
   description: The sql API from Apache Ignite — 3 operation(s) for sql.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -186,7 +187,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-system-api
-  name: Apache Ignite system API
+  name: Apache Ignite System API
   description: The system API from Apache Ignite — 2 operation(s) for system.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -199,7 +200,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-topology-api
-  name: Apache Ignite topology API
+  name: Apache Ignite Topology API
   description: The topology API from Apache Ignite — 2 operation(s) for topology.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:
@@ -212,7 +213,7 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 - aid: apache-ignite:apache-ignite-transactions-api
-  name: Apache Ignite transactions API
+  name: Apache Ignite Transactions API
   description: The transactions API from Apache Ignite — 2 operation(s) for transactions.
   humanURL: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
   tags:

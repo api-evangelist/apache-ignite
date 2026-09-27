@@ -99,6 +99,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NodeVersion:
+      required:
+      - product
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: Node version.
+        product:
+          type: string
+          description: Node product.
+      description: Node version.
     Problem:
       type: object
       properties:
@@ -131,13 +144,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    State:
-      type: string
-      description: Possible node states.
-      enum:
-      - STARTING
-      - STARTED
-      - STOPPING
     NodeInfo:
       required:
       - jdbcPort
@@ -152,19 +158,6 @@ components:
           description: Node JDBC port.
           format: int32
       description: Node info.
-    NodeVersion:
-      required:
-      - product
-      - version
-      type: object
-      properties:
-        version:
-          type: string
-          description: Node version.
-        product:
-          type: string
-          description: Node product.
-      description: Node version.
     InvalidParam:
       type: object
       properties:
@@ -189,6 +182,13 @@ components:
           - $ref: '#/components/schemas/State'
           - description: Node state.
       description: Node state.
+    State:
+      type: string
+      description: Possible node states.
+      enum:
+      - STARTING
+      - STARTED
+      - STOPPING
   securitySchemes:
     basicAuth:
       type: http

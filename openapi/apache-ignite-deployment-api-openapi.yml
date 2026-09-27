@@ -428,35 +428,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UnitStatus:
-      required:
-      - id
-      - versionToStatus
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unit identifier.
-        versionToStatus:
-          type: array
-          description: Map from unit version to unit deployment status.
-          items:
-            $ref: '#/components/schemas/UnitVersionStatus'
-      description: Unit status.
-    UnitVersionStatus:
-      required:
-      - status
-      - version
-      type: object
-      properties:
-        version:
-          type: string
-          description: Unit version.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/DeploymentStatus'
-          - description: Unit status.
-      description: Unit version and status.
     Problem:
       type: object
       properties:
@@ -489,12 +460,21 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    deployMode:
-      type: string
-      description: Initial set of nodes to deploy.
-      enum:
-      - MAJORITY
-      - ALL
+    UnitStatus:
+      required:
+      - id
+      - versionToStatus
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unit identifier.
+        versionToStatus:
+          type: array
+          description: Map from unit version to unit deployment status.
+          items:
+            $ref: '#/components/schemas/UnitVersionStatus'
+      description: Unit status.
     DeploymentStatus:
       type: string
       description: Status of deployment process.
@@ -503,6 +483,26 @@ components:
       - DEPLOYED
       - OBSOLETE
       - REMOVING
+    UnitVersionStatus:
+      required:
+      - status
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: Unit version.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DeploymentStatus'
+          - description: Unit status.
+      description: Unit version and status.
+    deployMode:
+      type: string
+      description: Initial set of nodes to deploy.
+      enum:
+      - MAJORITY
+      - ALL
     InvalidParam:
       type: object
       properties:

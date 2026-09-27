@@ -244,6 +244,39 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobState:
+      required:
+      - createTime
+      - id
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: Job ID.
+          format: uuid
+        status:
+          description: Job status.
+          allOf:
+          - $ref: '#/components/schemas/JobStatus'
+          - {}
+        createTime:
+          type: string
+          description: Job create time.
+          format: date-time
+        startTime:
+          type:
+          - string
+          - 'null'
+          description: Job start time.
+          format: date-time
+        finishTime:
+          type:
+          - string
+          - 'null'
+          description: Job finish time.
+          format: date-time
+      description: Rest representation of org.apache.ignite.compute.JobState.
     Problem:
       type: object
       properties:
@@ -286,49 +319,6 @@ components:
           description: Priority.
           format: int32
       description: DTO of update job priority request body.
-    JobStatus:
-      type: string
-      description: Job status.
-      enum:
-      - QUEUED
-      - EXECUTING
-      - FAILED
-      - COMPLETED
-      - CANCELING
-      - CANCELED
-    JobState:
-      required:
-      - createTime
-      - id
-      - status
-      type: object
-      properties:
-        id:
-          type: string
-          description: Job ID.
-          format: uuid
-        status:
-          description: Job status.
-          allOf:
-          - $ref: '#/components/schemas/JobStatus'
-          - {}
-        createTime:
-          type: string
-          description: Job create time.
-          format: date-time
-        startTime:
-          type:
-          - string
-          - 'null'
-          description: Job start time.
-          format: date-time
-        finishTime:
-          type:
-          - string
-          - 'null'
-          description: Job finish time.
-          format: date-time
-      description: Rest representation of org.apache.ignite.compute.JobState.
     InvalidParam:
       type: object
       properties:
@@ -339,6 +329,16 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
+    JobStatus:
+      type: string
+      description: Job status.
+      enum:
+      - QUEUED
+      - EXECUTING
+      - FAILED
+      - COMPLETED
+      - CANCELING
+      - CANCELED
   securitySchemes:
     basicAuth:
       type: http
