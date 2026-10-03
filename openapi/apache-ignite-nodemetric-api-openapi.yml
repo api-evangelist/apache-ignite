@@ -138,19 +138,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MetricSource:
-      required:
-      - enabled
-      - name
+    Metric:
       type: object
       properties:
         name:
           type: string
-          description: Metric source name.
-        enabled:
-          type: boolean
-          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
-      description: A list of metric sources provided by modules.
+          description: Metric name.
+        desc:
+          type:
+          - string
+          - 'null'
+          description: Metric description.
+      description: Metric representation.
     Problem:
       type: object
       properties:
@@ -193,6 +192,19 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
+    MetricSource:
+      required:
+      - enabled
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric source name.
+        enabled:
+          type: boolean
+          description: If True, the metric is tracked. Otherwise, the metric is not tracked.
+      description: A list of metric sources provided by modules.
     MetricSet:
       required:
       - metrics
@@ -208,18 +220,6 @@ components:
           items:
             $ref: '#/components/schemas/Metric'
       description: Metrics set representation.
-    Metric:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Metric name.
-        desc:
-          type:
-          - string
-          - 'null'
-          description: Metric description.
-      description: Metric representation.
   securitySchemes:
     basicAuth:
       type: http

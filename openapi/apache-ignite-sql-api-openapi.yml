@@ -189,41 +189,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SqlQuery:
-      required:
-      - id
-      - node
-      - phase
-      - schema
-      - sql
-      - startTime
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          description: Sql query ID.
-          format: uuid
-        node:
-          type: string
-          description: Initiator node.
-        phase:
-          type: string
-          description: Phase.
-        type:
-          type: string
-          description: Type.
-        schema:
-          type: string
-          description: Schema.
-        sql:
-          type: string
-          description: SQL statement.
-        startTime:
-          type: string
-          description: Start time.
-          format: date-time
-      description: Rest representation of sql query.
     InvalidParam:
       type: object
       properties:
@@ -266,6 +231,41 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    SqlQuery:
+      required:
+      - id
+      - node
+      - phase
+      - schema
+      - sql
+      - startTime
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: Sql query ID.
+          format: uuid
+        node:
+          type: string
+          description: Initiator node.
+        phase:
+          type: string
+          description: Phase.
+        type:
+          type: string
+          description: Type.
+        schema:
+          type: string
+          description: Schema.
+        sql:
+          type: string
+          description: SQL statement.
+        startTime:
+          type: string
+          description: Start time.
+          format: date-time
+      description: Rest representation of sql query.
   securitySchemes:
     basicAuth:
       type: http

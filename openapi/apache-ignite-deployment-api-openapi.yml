@@ -428,6 +428,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UnitVersionStatus:
+      required:
+      - status
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: Unit version.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DeploymentStatus'
+          - description: Unit status.
+      description: Unit version and status.
     Problem:
       type: object
       properties:
@@ -460,6 +474,14 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    DeploymentStatus:
+      type: string
+      description: Status of deployment process.
+      enum:
+      - UPLOADING
+      - DEPLOYED
+      - OBSOLETE
+      - REMOVING
     UnitStatus:
       required:
       - id
@@ -475,34 +497,6 @@ components:
           items:
             $ref: '#/components/schemas/UnitVersionStatus'
       description: Unit status.
-    DeploymentStatus:
-      type: string
-      description: Status of deployment process.
-      enum:
-      - UPLOADING
-      - DEPLOYED
-      - OBSOLETE
-      - REMOVING
-    UnitVersionStatus:
-      required:
-      - status
-      - version
-      type: object
-      properties:
-        version:
-          type: string
-          description: Unit version.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/DeploymentStatus'
-          - description: Unit status.
-      description: Unit version and status.
-    deployMode:
-      type: string
-      description: Initial set of nodes to deploy.
-      enum:
-      - MAJORITY
-      - ALL
     InvalidParam:
       type: object
       properties:
@@ -513,6 +507,12 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
+    deployMode:
+      type: string
+      description: Initial set of nodes to deploy.
+      enum:
+      - MAJORITY
+      - ALL
   securitySchemes:
     basicAuth:
       type: http

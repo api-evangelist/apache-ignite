@@ -82,6 +82,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NetworkAddress:
+      type: object
+      properties:
+        host:
+          type: string
+          description: Name of the host node runs on.
+        port:
+          type: integer
+          description: Port the node runs on.
+          format: int32
+      description: Node network address information.
     Problem:
       type: object
       properties:
@@ -114,17 +125,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    NetworkAddress:
-      type: object
-      properties:
-        host:
-          type: string
-          description: Name of the host node runs on.
-        port:
-          type: integer
-          description: Port the node runs on.
-          format: int32
-      description: Node network address information.
     NodeMetadata:
       type: object
       properties:

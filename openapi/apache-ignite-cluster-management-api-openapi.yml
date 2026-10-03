@@ -95,35 +95,26 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ClusterState:
+    InitCommand:
       type: object
       properties:
+        metaStorageNodes:
+          type: array
+          description: A list of RAFT metastorage nodes.
+          items:
+            type: string
         cmgNodes:
           type: array
-          description: List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.
+          description: A list of RAFT cluster management nodes.
           items:
             type: string
-        msNodes:
-          type: array
-          description: List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.
-          items:
-            type: string
-        igniteVersion:
+        clusterName:
           type: string
-          description: Version of Apache Ignite that the cluster was created on.
-        clusterTag:
-          allOf:
-          - $ref: '#/components/schemas/ClusterTag'
-          - description: Unique tag that identifies the cluster.
-        formerClusterIds:
-          type:
-          - array
-          - 'null'
-          description: IDs the cluster had before.
-          items:
-            type: string
-            format: uuid
-      description: Information about current cluster state.
+          description: The name of the cluster.
+        clusterConfiguration:
+          type: string
+          description: Cluster configuration in HOCON format.
+      description: Cluster initialization configuration.
     Problem:
       type: object
       properties:
@@ -156,6 +147,45 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    ClusterState:
+      type: object
+      properties:
+        cmgNodes:
+          type: array
+          description: List of cluster management group nodes. These nodes are responsible for maintaining RAFT cluster topology.
+          items:
+            type: string
+        msNodes:
+          type: array
+          description: List of metastorage nodes. These nodes are responsible for storing RAFT cluster metadata.
+          items:
+            type: string
+        igniteVersion:
+          type: string
+          description: Version of Apache Ignite that the cluster was created on.
+        clusterTag:
+          allOf:
+          - $ref: '#/components/schemas/ClusterTag'
+          - description: Unique tag that identifies the cluster.
+        formerClusterIds:
+          type:
+          - array
+          - 'null'
+          description: IDs the cluster had before.
+          items:
+            type: string
+            format: uuid
+      description: Information about current cluster state.
     ClusterTag:
       type: object
       properties:
@@ -167,36 +197,6 @@ components:
           type: string
           description: Unique cluster name.
       description: Unique tag that identifies the cluster.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
-    InitCommand:
-      type: object
-      properties:
-        metaStorageNodes:
-          type: array
-          description: A list of RAFT metastorage nodes.
-          items:
-            type: string
-        cmgNodes:
-          type: array
-          description: A list of RAFT cluster management nodes.
-          items:
-            type: string
-        clusterName:
-          type: string
-          description: The name of the cluster.
-        clusterConfiguration:
-          type: string
-          description: Cluster configuration in HOCON format.
-      description: Cluster initialization configuration.
   securitySchemes:
     basicAuth:
       type: http
