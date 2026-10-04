@@ -98,23 +98,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ResetClusterRequest:
-      type: object
-      properties:
-        cmgNodeNames:
-          type:
-          - array
-          - 'null'
-          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
-          items:
-            type: string
-        metastorageReplicationFactor:
-          type:
-          - integer
-          - 'null'
-          description: Number of nodes in the voting member set of the Metastorage RAFT group.
-          format: int32
-      description: Reset cluster.
     InvalidParam:
       type: object
       properties:
@@ -157,6 +140,23 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    ResetClusterRequest:
+      type: object
+      properties:
+        cmgNodeNames:
+          type:
+          - array
+          - 'null'
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type:
+          - integer
+          - 'null'
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+      description: Reset cluster.
     MigrateRequest:
       type: object
       properties:

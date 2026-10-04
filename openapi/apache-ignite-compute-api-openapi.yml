@@ -244,16 +244,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JobStatus:
-      type: string
-      description: Job status.
-      enum:
-      - QUEUED
-      - EXECUTING
-      - FAILED
-      - COMPLETED
-      - CANCELING
-      - CANCELED
     Problem:
       type: object
       properties:
@@ -286,16 +276,16 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    InvalidParam:
+    UpdateJobPriorityBody:
+      required:
+      - priority
       type: object
       properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
+        priority:
+          type: integer
+          description: Priority.
+          format: int32
+      description: DTO of update job priority request body.
     JobState:
       required:
       - createTime
@@ -329,16 +319,26 @@ components:
           description: Job finish time.
           format: date-time
       description: Rest representation of org.apache.ignite.compute.JobState.
-    UpdateJobPriorityBody:
-      required:
-      - priority
+    InvalidParam:
       type: object
       properties:
-        priority:
-          type: integer
-          description: Priority.
-          format: int32
-      description: DTO of update job priority request body.
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    JobStatus:
+      type: string
+      description: Job status.
+      enum:
+      - QUEUED
+      - EXECUTING
+      - FAILED
+      - COMPLETED
+      - CANCELING
+      - CANCELED
   securitySchemes:
     basicAuth:
       type: http

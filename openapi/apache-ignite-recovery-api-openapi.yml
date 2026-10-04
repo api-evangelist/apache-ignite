@@ -591,77 +591,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RestartZonePartitionsRequest:
-      type: object
-      properties:
-        nodeNames:
-          type: array
-          description: Names specifying nodes to restart zone partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
-          items:
-            type: string
-        zoneName:
-          type: string
-          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
-          items:
-            type: integer
-            format: int32
-      description: restart partitions configuration.
-    GlobalPartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalPartitionStateResponse'
-      description: Information about global partition states.
-    ResetZonePartitionsRequest:
-      type: object
-      properties:
-        zoneName:
-          type: string
-          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to reset. All if empty.
-          items:
-            type: integer
-            format: int32
-      description: Reset zone partitions configuration.
-    LocalPartitionStateResponse:
-      required:
-      - estimatedRows
-      - nodeName
-      - partitionId
-      - schemaName
-      - state
-      - tableId
-      - tableName
-      - zoneName
-      type: object
-      properties:
-        partitionId:
-          type: integer
-          format: int32
-        zoneName:
-          type: string
-        tableId:
-          type: integer
-          format: int32
-        schemaName:
-          type: string
-        tableName:
-          type: string
-        nodeName:
-          type: string
-        state:
-          type: string
-        estimatedRows:
-          type: integer
-          format: int64
-      description: Information about local partition state.
     GlobalPartitionStateResponse:
       required:
       - partitionId
@@ -687,22 +616,6 @@ components:
         state:
           type: string
       description: Information about global partition state.
-    GlobalZonePartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
-      description: Information about global zone partition states.
-    LocalZonePartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
-      description: Information about local zone partition states.
     GlobalZonePartitionStateResponse:
       required:
       - partitionId
@@ -718,6 +631,43 @@ components:
         state:
           type: string
       description: Information about global zone partition state.
+    RestartPartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to restart partitions of.
+      description: restart partitions configuration.
+    ResetPartitionsRequest:
+      type: object
+      properties:
+        zoneName:
+          type: string
+          description: Name of the zone to reset partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to reset. All if empty.
+          items:
+            type: integer
+            format: int32
+        tableName:
+          type: string
+          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
+      description: Reset partitions configuration.
     Problem:
       type: object
       properties:
@@ -750,7 +700,121 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    ResetPartitionsRequest:
+    LocalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalZonePartitionStateResponse'
+      description: Information about local zone partition states.
+    GlobalZonePartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalZonePartitionStateResponse'
+      description: Information about global zone partition states.
+    LocalPartitionStateResponse:
+      required:
+      - estimatedRows
+      - nodeName
+      - partitionId
+      - schemaName
+      - state
+      - tableId
+      - tableName
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        tableId:
+          type: integer
+          format: int32
+        schemaName:
+          type: string
+        tableName:
+          type: string
+        nodeName:
+          type: string
+        state:
+          type: string
+        estimatedRows:
+          type: integer
+          format: int64
+      description: Information about local partition state.
+    LocalZonePartitionStateResponse:
+      required:
+      - estimatedRows
+      - nodeName
+      - partitionId
+      - state
+      - zoneName
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          format: int32
+        zoneName:
+          type: string
+        nodeName:
+          type: string
+        state:
+          type: string
+        estimatedRows:
+          type: integer
+          format: int64
+      description: Information about local zone partition state.
+    RestartZonePartitionsRequest:
+      type: object
+      properties:
+        nodeNames:
+          type: array
+          description: Names specifying nodes to restart zone partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
+          items:
+            type: string
+        zoneName:
+          type: string
+          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
+        partitionIds:
+          type: array
+          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
+          items:
+            type: integer
+            format: int32
+      description: restart partitions configuration.
+    GlobalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalPartitionStateResponse'
+      description: Information about global partition states.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
+    LocalPartitionStatesResponse:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalPartitionStateResponse'
+      description: Information about local partition states.
+    ResetZonePartitionsRequest:
       type: object
       properties:
         zoneName:
@@ -762,10 +826,24 @@ components:
           items:
             type: integer
             format: int32
-        tableName:
-          type: string
-          description: Fully-qualified name of the table to reset partitions of. Without quotes, case-sensitive.
-      description: Reset partitions configuration.
+      description: Reset zone partitions configuration.
+    ResetClusterRequest:
+      type: object
+      properties:
+        cmgNodeNames:
+          type:
+          - array
+          - 'null'
+          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
+          items:
+            type: string
+        metastorageReplicationFactor:
+          type:
+          - integer
+          - 'null'
+          description: Number of nodes in the voting member set of the Metastorage RAFT group.
+          format: int32
+      description: Reset cluster.
     MigrateRequest:
       type: object
       properties:
@@ -798,84 +876,6 @@ components:
             type: string
             format: uuid
       description: Migrate nodes to new cluster.
-    LocalPartitionStatesResponse:
-      type: object
-      properties:
-        states:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalPartitionStateResponse'
-      description: Information about local partition states.
-    ResetClusterRequest:
-      type: object
-      properties:
-        cmgNodeNames:
-          type:
-          - array
-          - 'null'
-          description: Names of the proposed CMG nodes. Optional if the MG group is being repaired. If not specified, the current CMG nodes are used.
-          items:
-            type: string
-        metastorageReplicationFactor:
-          type:
-          - integer
-          - 'null'
-          description: Number of nodes in the voting member set of the Metastorage RAFT group.
-          format: int32
-      description: Reset cluster.
-    InvalidParam:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
-    RestartPartitionsRequest:
-      type: object
-      properties:
-        nodeNames:
-          type: array
-          description: Names specifying nodes to restart partitions. Case-sensitive. If empty/omitted, partitions on all nodes are restarted.
-          items:
-            type: string
-        zoneName:
-          type: string
-          description: Name of the zone to restart partitions of. Without quotes, case-sensitive.
-        partitionIds:
-          type: array
-          description: IDs of partitions to restart. If empty/omitted, all partitions will be restarted.
-          items:
-            type: integer
-            format: int32
-        tableName:
-          type: string
-          description: Fully-qualified name of the table to restart partitions of.
-      description: restart partitions configuration.
-    LocalZonePartitionStateResponse:
-      required:
-      - estimatedRows
-      - nodeName
-      - partitionId
-      - state
-      - zoneName
-      type: object
-      properties:
-        partitionId:
-          type: integer
-          format: int32
-        zoneName:
-          type: string
-        nodeName:
-          type: string
-        state:
-          type: string
-        estimatedRows:
-          type: integer
-          format: int64
-      description: Information about local zone partition state.
   securitySchemes:
     basicAuth:
       type: http

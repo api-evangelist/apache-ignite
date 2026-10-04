@@ -82,17 +82,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    NetworkAddress:
+    ClusterNode:
       type: object
       properties:
-        host:
+        id:
           type: string
-          description: Name of the host node runs on.
-        port:
-          type: integer
-          description: Port the node runs on.
-          format: int32
-      description: Node network address information.
+          description: Node ID.
+          format: uuid
+        name:
+          type: string
+          description: Unique cluster name.
+        address:
+          allOf:
+          - $ref: '#/components/schemas/NetworkAddress'
+          - description: Cluster network address information.
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/NodeMetadata'
+          - description: Node metadata information.
+      description: Information about the cluster node.
     Problem:
       type: object
       properties:
@@ -125,6 +133,16 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name.
+        reason:
+          type: string
+          description: The issue with the parameter.
+      description: Information about invalid request parameter.
     NodeMetadata:
       type: object
       properties:
@@ -140,35 +158,17 @@ components:
           description: The HTTPS port exposed to REST API.
           format: int32
       description: Node metadata information.
-    InvalidParam:
+    NetworkAddress:
       type: object
       properties:
-        name:
+        host:
           type: string
-          description: Parameter name.
-        reason:
-          type: string
-          description: The issue with the parameter.
-      description: Information about invalid request parameter.
-    ClusterNode:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Node ID.
-          format: uuid
-        name:
-          type: string
-          description: Unique cluster name.
-        address:
-          allOf:
-          - $ref: '#/components/schemas/NetworkAddress'
-          - description: Cluster network address information.
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/NodeMetadata'
-          - description: Node metadata information.
-      description: Information about the cluster node.
+          description: Name of the host node runs on.
+        port:
+          type: integer
+          description: Port the node runs on.
+          format: int32
+      description: Node network address information.
   securitySchemes:
     basicAuth:
       type: http

@@ -138,6 +138,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    MetricSet:
+      required:
+      - metrics
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Metric set name.
+        metrics:
+          type: array
+          description: Metrics.
+          items:
+            $ref: '#/components/schemas/Metric'
+      description: Metrics set representation.
     Metric:
       type: object
       properties:
@@ -205,21 +220,6 @@ components:
           type: boolean
           description: If True, the metric is tracked. Otherwise, the metric is not tracked.
       description: A list of metric sources provided by modules.
-    MetricSet:
-      required:
-      - metrics
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Metric set name.
-        metrics:
-          type: array
-          description: Metrics.
-          items:
-            $ref: '#/components/schemas/Metric'
-      description: Metrics set representation.
   securitySchemes:
     basicAuth:
       type: http

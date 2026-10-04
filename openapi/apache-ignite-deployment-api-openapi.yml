@@ -442,6 +442,21 @@ components:
           - $ref: '#/components/schemas/DeploymentStatus'
           - description: Unit status.
       description: Unit version and status.
+    UnitStatus:
+      required:
+      - id
+      - versionToStatus
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unit identifier.
+        versionToStatus:
+          type: array
+          description: Map from unit version to unit deployment status.
+          items:
+            $ref: '#/components/schemas/UnitVersionStatus'
+      description: Unit status.
     Problem:
       type: object
       properties:
@@ -474,29 +489,12 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParam'
       description: Extended description of the problem with the request.
-    DeploymentStatus:
+    deployMode:
       type: string
-      description: Status of deployment process.
+      description: Initial set of nodes to deploy.
       enum:
-      - UPLOADING
-      - DEPLOYED
-      - OBSOLETE
-      - REMOVING
-    UnitStatus:
-      required:
-      - id
-      - versionToStatus
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unit identifier.
-        versionToStatus:
-          type: array
-          description: Map from unit version to unit deployment status.
-          items:
-            $ref: '#/components/schemas/UnitVersionStatus'
-      description: Unit status.
+      - MAJORITY
+      - ALL
     InvalidParam:
       type: object
       properties:
@@ -507,12 +505,14 @@ components:
           type: string
           description: The issue with the parameter.
       description: Information about invalid request parameter.
-    deployMode:
+    DeploymentStatus:
       type: string
-      description: Initial set of nodes to deploy.
+      description: Status of deployment process.
       enum:
-      - MAJORITY
-      - ALL
+      - UPLOADING
+      - DEPLOYED
+      - OBSOLETE
+      - REMOVING
   securitySchemes:
     basicAuth:
       type: http
