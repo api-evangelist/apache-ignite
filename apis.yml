@@ -248,6 +248,12 @@ apis:
   - type: Documentation
     url: https://ignite.apache.org/docs/ignite3/3.1.0/developers-guide/rest/rest-api
 common:
+- type: Plans
+  url: plans/apache-ignite-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/apache-ignite-rate-limits.yml
+- type: FinOps
+  url: finops/apache-ignite-finops.yml
 - type: Website
   url: https://www.apache.org/
 - type: CodeOfConduct
